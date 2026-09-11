@@ -1,0 +1,13 @@
+experiment: EXP-001
+hidden_dir: outputs/hidden/ouro-1.4b
+head:
+  kind: residual_rich
+  residual_width: 512
+training:
+  lr: 1.0e-4
+  weight_decay: 0.0
+  batch_size: 256
+  max_steps: 5000
+  eval_every: 100
+  patience_evals: 8
+  seeds: [11, 29, 47]

@@ -1,0 +1,17 @@
+[project]
+name = "depth-decoder-mismatch"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26",
+  "torch>=2.4",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+hf = ["transformers>=4.54,<4.56", "datasets>=3"]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

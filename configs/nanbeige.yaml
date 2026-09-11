@@ -1,0 +1,17 @@
+model:
+  name: Nanbeige/Nanbeige4.2-3B-Base
+  revision: null
+  trust_remote_code: true
+  dtype: bfloat16
+  native_depths: [1, 2]
+data:
+  dataset: null
+  split: null
+  text_field: text
+  max_length: 512
+  max_sequences: 2048
+  sample_tokens_per_sequence: 64
+  seed: 17
+storage:
+  format: pt
+  output_dir: outputs/hidden/nanbeige4.2-3b

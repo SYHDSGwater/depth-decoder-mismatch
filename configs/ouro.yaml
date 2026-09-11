@@ -1,0 +1,19 @@
+model:
+  name: ByteDance/Ouro-1.4B
+  revision: null
+  trust_remote_code: true
+  dtype: bfloat16
+  native_depths: [1, 2, 3, 4]
+  max_depth: 4
+
+data:
+  dataset: null
+  split: null
+  text_field: text
+  max_length: 512
+  max_sequences: 2048
+  sample_tokens_per_sequence: 64
+  seed: 17
+storage:
+  format: pt
+  output_dir: outputs/hidden/ouro-1.4b
