@@ -19,3 +19,8 @@ Before changing the tokenizer, directly manipulate only the LM-head output dimen
 
 ## 2026-09-11 — Make active-vocabulary CE the strong EXP-003 endpoint
 Raw CE under dummy-class inflation contains a mechanical denominator / competition penalty. EXP-003 therefore decomposes raw CE into active-vocabulary conditional CE and dummy competition cost. A positive depth×V interaction in active-vocabulary CE is the primary evidence for harmful output-space inflation; a raw-only interaction is interpreted as weaker competition/suppression cost.
+
+## 2026-09-11 — Add EXP-001b frozen-native-head audit before accepting the deep null
+EXP-001 pilot and 1M place essentially all rich-head gain at T=1, while T=2..4 select step 1 for both linear and rich full-head refits and even slightly underperform the untouched native head. This creates a serious optimization-drift confound: moving the pretrained ~100M-parameter W can erase a small residual gain before the nonlinear branch is meaningfully optimized.
+
+EXP-001b therefore freezes `W_native` exactly and trains only residual adapters on the already cached 1M hidden states. A matched low-rank linear residual and nonlinear GELU residual use identical widths and parameter counts. The primary decoder-expressivity endpoint becomes the incremental nonlinear gain `G_nonlin = CE_linear_residual - CE_nonlinear_residual`, not gain over the native head alone. Step 0 is included in model selection and early validation is dense (0,1,2,5,10,20,50,100,...). This supplement is explicitly post-hoc and cannot be treated as independent confirmation.
