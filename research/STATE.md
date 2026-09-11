@@ -40,7 +40,7 @@ Phase B pure-vocab causal test:
 
 ## Current experiment order
 1. `EXP-001`: Ouro native-depth Head Regret sweep — smoke/pilot/1M completed, non-confirmatory.
-2. `EXP-001b`: frozen-native-head residual audit — proposed post-hoc diagnostic to separate real nonlinearity gain from full-head refit drift.
+2. `EXP-001b`: frozen-native-head residual audit — primary-width run completed/audited; post-hoc diagnostic to separate real nonlinearity gain from full-head refit drift.
 3. `EXP-002`: Nanbeige native-loop replication.
 4. `EXP-003`: direct output-vocabulary inflation × recurrent-depth causal test.
 5. `EXP-004`: natural 16K-vs-larger tokenizer × depth study, only after the isolated output-space test.
@@ -53,10 +53,10 @@ Phase B pure-vocab causal test:
 - Never-target output classes isolate output dimensionality/competition while leaving tokenizer and targets fixed.
 - Raw CE under output inflation includes a mechanical dummy-class denominator penalty; EXP-003 therefore decomposes it into `CE_active` and `CE_competition`.
 - EXP-001 pilot and 1M show nearly all rich-vs-linear gain at T=1 and approximately zero gain at T=2..4, but all deep full-refit probes selected step 1 and even refit linear slightly underperformed the untouched native head.
-- Therefore the deep null currently favors H2 but is confounded by full-head optimization drift.
+- EXP-001b recovers positive nonlinear gain at T2, but not T3/T4. The overall slope remains negative; W drift alone is not causally isolated.
 
 ## Open uncertainties
-- After freezing `W_native`, does matched nonlinear residual capacity still add held-out gain at T>=2 beyond a matched linear residual adapter?
+- Does the EXP-001b T2 gain and T3/T4 null survive width robustness and independent replication?
 - Does the sign replicate on Nanbeige T=1→2?
 - Does output-only vocabulary inflation produce `I_active > 0`, i.e. active-token modeling damage that grows with recurrent depth?
 - Or is any raw-loss penalty entirely explained by dummy-class probability mass (`CE_competition`)?
@@ -81,7 +81,7 @@ Phase B pure-vocab causal test:
 - raw CE alone is not sufficient for the strong bottleneck claim; `CE_active` interaction is primary.
 
 ## Next action
-Implement and run EXP-001b on the existing 1M cached hidden states before treating the EXP-001 T>=2 null as evidence that deeper Ouro representations are fully linearly decodable. In parallel, EXP-003 decoder-only bridge remains useful for estimating output-vocab inflation effect sizes.
+EXP-001b primary width is complete. Preserve the T2 positive gain and T3/T4 null; independent replication and secondary-width robustness remain pending. In parallel, EXP-003 decoder-only bridge remains useful for estimating output-vocab inflation effect sizes.
 
 ## EXP-001 completed runs (2026-09-11)
 - Smoke: 10240 targets, 24 fits, 50-step budget; slope +0.00009894, document interval [-0.00344752,+0.00366996]; plumbing passed, no hypothesis conclusion.
@@ -89,3 +89,9 @@ Implement and run EXP-001b on the existing 1M cached hidden states before treati
 - 1M: 800000/100000/100000 targets, 31250 documents, 24 fits; slope -0.02339529, interval [-0.02406723,-0.02274578]; observed direction favors H2.
 - Pilot and 1M: T1 selected step 100, T2..4 step 1; optimized family optima are not established. Rich held-out CE improves with depth.
 - 1M includes all pilot/smoke records unchanged; all stages are non-confirmatory and independent confirmation remains pending.
+
+## Completed EXP-001b run
+- Primary width 512; 24 validation-only tuning fits then 24 report fits, fixed 2000 steps and step-zero selection.
+- Source/config/launch record: research/runs/EXP-001b-20260911.json; all 11 unit tests and synthetic GPU integration passed.
+- G_nonlin T1..4: [0.054595, 0.002830, -0.000002, 0]; slope -0.016662, document interval [-0.017328,-0.015993].
+- T2 gain is positive in every seed; T3/T4 near zero. T1 selects step 2000; all T4 report fits select step 0. Non-confirmatory; width robustness pending.

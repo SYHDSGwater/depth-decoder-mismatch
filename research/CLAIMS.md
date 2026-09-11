@@ -6,7 +6,7 @@ Do not promote a claim until its required evidence exists.
 |---|---|---|---|
 | C1 | Linear-vs-rich decoder regret changes systematically with native recurrent depth in Ouro. | Valid paired EXP-001 with robust slope CI across probe seeds/capacity. | observed in pilot/1M, non-confirmatory |
 | C2 | The sign is positive (supports forward DDM). | C1 with `dR/dT > 0`, plus rich-head loss not degrading enough to explain slope. | not supported by current EXP-001 |
-| C3 | The sign is negative (supports depth-as-linearization/decoder compensation). | EXP-001 negative slope plus EXP-001b showing `G_nonlin(1)>0` and `G_nonlin(2..4)≈0` under frozen-native-head matched residual controls, ideally followed by independent replication. | provisional; EXP-001b pending |
+| C3 | The sign is negative (supports depth-as-linearization/decoder compensation). | EXP-001 negative slope plus EXP-001b showing `G_nonlin(1)>0` and `G_nonlin(2..4)≈0` under frozen-native-head matched residual controls, ideally followed by independent replication. | provisional/mixed: EXP-001b slope negative; T2 gain positive, T3/T4 near zero; all-deep-null criterion not met |
 | C4 | Effect replicates across looped architectures. | Valid Nanbeige EXP-002 with same sign in native T=1→2 range. | untested |
 | C5 | Pure output-space inflation causally becomes more harmful as recurrent depth increases. | EXP-003 positive paired `depth × V_out` interaction, preferably in `CE_active` after removing dummy probability-mass competition. | untested |
 | C6 | Natural larger tokenizer vocab causally amplifies depth–decoder mismatch. | EXP-004 matched tokenizer-vocab × depth training with BPB-normalized positive interaction. | untested |
