@@ -3,7 +3,7 @@
 > Keep <= ~100 lines. This is the first file an agent reads.
 
 ## Current research question
-Does increasing recurrent/looped depth make a fixed-width linear-softmax decoder an increasingly strong *marginal* bottleneck, and does pure output-space inflation causally create a depth-dependent optimization penalty even when deeper states remain linearly readable?
+Does increasing recurrent/looped depth make a fixed-width linear-softmax decoder an increasingly strong *marginal* bottleneck, or does recurrent computation instead align hidden states to the pretrained decoder? Separately, does pure output-space inflation causally create a depth-dependent optimization penalty?
 
 ## Primary metrics
 Phase A decoder-family diagnostic:
@@ -12,72 +12,65 @@ Phase A decoder-family diagnostic:
 EXP-001b frozen-head mechanistic audit:
 `G_nonlin(T) = CE_linear_residual(T) - CE_nonlinear_residual(T)` with the native LM head frozen in both arms.
 
-Phase B output-space causal test:
-`I_active = [CE_active(T_hi,V_hi)-CE_active(T_hi,V_base)] - [CE_active(T_lo,V_hi)-CE_active(T_lo,V_base)]`.
+Final low-cost output-space causal test (EXP-003C):
+`I_active = [CE_active(T4,4096)-CE_active(T4,256)] - [CE_active(T1,4096)-CE_active(T1,256)]`.
 
 ## Current evidence
-- EXP-001 pilot/1M show negative depth slope of rich-vs-linear regret, concentrated in T1→T2.
-- EXP-001b freezes the native LM head and still finds `G_nonlin` collapsing with depth: T1=0.054595, T2=0.002830, T3≈0, T4=0.
-- Therefore current Ouro evidence does **not** support the forward-expressivity version of DDM; deeper native states do not increasingly require a richer decoder.
-- The remaining small-vocab hypothesis is now framed as an output-space optimization/competition question, tested separately in EXP-003A.
+- EXP-001 pilot and 1M both show a strongly negative depth slope of rich-vs-linear regret, concentrated in T1→T2.
+- In both pilot and 1M, **linear refit itself also stops helping at T>=2**: T2/T3/T4 all select the earliest evaluated checkpoint (step 1), and the refit head is slightly worse than the untouched native head.
+- This is important because linear-softmax CE is convex in W for fixed hidden states. The deep failure is therefore not naturally explained by a non-convex head-optimization trap; it is more consistent with the pretrained native W already being near a good optimum for deep states, while unrestricted 100M-parameter refitting adds estimation noise / overfits finite FineWeb-Edu samples.
+- EXP-001b strengthens this interpretation: with W_native frozen, a constrained low-rank linear residual gains +0.303925 nat at T1, +0.011143 at T2, and exactly ~0 at T3/T4; nonlinear incremental gain similarly collapses T1=0.054595, T2=0.002830, T3≈0, T4=0.
+- Therefore current Ouro evidence does **not** support forward DDM. It instead suggests recurrent computation progressively moves representations into a geometry already well matched to the pretrained LM head.
 
 ## Competing hypotheses
-- **H1-forward DDM:** deeper states become increasingly under-exploited by a linear decoder. Current Ouro evidence does not support this.
-- **H2 depth-as-linearization / decoder alignment:** recurrent computation reduces marginal nonlinear decoder gain. Current Ouro evidence supports this direction, pending independent/cross-architecture replication.
-- **H3 output-space optimization interaction:** larger `V_out` causes greater collateral active-token learning damage at larger T even if forward decoder expressivity is not limiting; predicts `I_active > 0` in EXP-003A.
-- **H0-output:** no material depth × output-vocabulary interaction after removing mechanical dummy competition.
+- **H1-forward DDM:** deeper states become increasingly under-exploited by a linear decoder. Current Ouro evidence strongly argues against this direction.
+- **H2 decoder alignment / depth-as-linearization:** recurrent computation reduces both post-hoc linear adaptation gain and nonlinear decoder gain. Current Ouro evidence supports this within-model mechanism; independent replication is absent.
+- **H3 recurrent output-space interaction:** larger V_out causes greater active-token learning damage at larger T even if deep states are linearly readable; predicts `I_active > 0` in EXP-003C.
+- **H0-output:** no material recurrent-depth × output-vocabulary interaction after removing dummy competition.
 
 ## Current baselines
 ### EXP-001 / EXP-001b
 - model: `ByteDance/Ouro-1.4B`;
 - native T=1..4, D=2048, V=49,152;
-- EXP-001b primary expressivity endpoint: matched linear-vs-nonlinear residual gain with `W_native` frozen.
+- EXP-001 full linear/rich probes start from native W;
+- EXP-001b freezes W_native and compares matched linear vs nonlinear residual adapters.
 
-### EXP-003A — primary Phase-B screen
-- same pinned Ouro-1.4B checkpoint/tokenizer as EXP-001;
-- tokenizer/input vocabulary fixed at 49,152;
-- output vocabulary: 49,152 control vs 98,304 output-only inflation;
-- dummy rows are trainable and never inputs/targets;
-- primary recurrent depths: T=1 vs T=4, forced fixed depth;
-- one final-step raw-softmax LM loss per token in every arm;
-- all ordinary model parameters plus active/dummy output rows update during continued pretraining;
-- primary screen budget: 50M supervised tokens/arm;
-- primary endpoint: `I_active(50M)`; validation trajectory `I_active(s)` distinguishes transient vs persistent cost.
+### EXP-003C — final low-cost causal screen
+- WikiText-2 byte-level, active/input/target vocabulary fixed at 256;
+- compact 4-layer, D=32 Transformer body;
+- same 4-layer body recurrently weight-shared for T=1 vs T=4;
+- output vocabulary: 256 control vs 4096 with 3840 trainable never-target classes;
+- one final-loop LM loss only;
+- 600 optimizer steps/run;
+- 5 paired report seeds;
+- primary endpoint: paired-seed `I_active` at step 600.
 
-### EXP-003B — from-scratch replication
-Run only if EXP-003A shows a stable nonzero interaction worth testing outside pretrained-checkpoint adaptation.
-
-### EXP-004 — natural tokenizer study
-Changes tokenizer itself; separate because sequence length, token frequency and compositional structure also change.
+### EXP-003A / EXP-003B
+Scientifically stronger but currently too expensive for this project. Keep as future-work designs only. EXP-003A uses Ouro continued pretraining; EXP-003B is a larger from-scratch LoopLM replication.
 
 ## Current experiment order
 1. EXP-001 — Ouro Head Regret sweep: completed, non-confirmatory.
-2. EXP-001b — frozen-native-head audit: completed, post-hoc mechanistic diagnostic.
-3. EXP-003A — Ouro continued-pretraining output-vocab intervention: **next primary experiment**.
-4. EXP-002 — Nanbeige cross-architecture decoder-gain replication.
-5. EXP-003B — small from-scratch output-vocab replication if EXP-003A positive.
-6. EXP-004 — natural tokenizer-vocab experiment if isolated output-space evidence warrants it.
+2. EXP-001b — frozen-native-head residual audit: completed, post-hoc mechanistic diagnostic.
+3. EXP-003C — tiny recurrent × output-vocab causal control: **final planned experiment**.
+4. If EXP-003C is null/raw-only/negative: stop the topic and leave EXP-003A/B/004 as future work.
+5. If EXP-003C shows robust positive `I_active`: expensive Ouro-scale validation may be reconsidered in future work.
 
-## EXP-003A protocol invariants
-- same tokenizer/token IDs/targets/input embeddings across V_out arms;
-- same starting backbone and active LM-head rows within paired arms;
-- 98K arm adds exactly 49,152 never-target output rows;
-- primary dummy initialization uses one-to-one clones of active rows, giving step-0 `m_dummy=0.5`, `CE_competition=log 2`, and identical `CE_active` across paired V arms;
-- fixed recurrent T; adaptive exit disabled;
-- one final-step LM loss in both T=1 and T=4 arms;
-- raw full-softmax CE is used for training; active-renormalized CE is evaluation only;
-- backbone and active rows are trainable; freezing them would make `CE_active` unable to reveal collateral learning damage;
-- LR selected from 49K control only within each T, then shared with 98K arm;
-- same training documents, token budget and paired batch order across all arms;
-- fresh data relative to EXP-001 preferred;
-- test set evaluated only at the fixed 50M endpoint;
-- document-level paired bootstrap; tokens are not IID units.
+## EXP-003C protocol invariants
+- same byte-level inputs/targets and data order across all arms;
+- same initial input embeddings, recurrent-body weights and 256 active head rows within each paired seed;
+- T=1/T=4 differ only in the number of applications of the same shared Transformer body;
+- V_out=4096 appends trainable never-target rows that enter the raw softmax denominator;
+- dummy IDs never appear as inputs or labels;
+- one final-loop raw-softmax loss in both depth arms; no intermediate-loop supervision;
+- LR chosen from V_out=256 control separately per T, then shared with V_out=4096 at that T;
+- final endpoint fixed at step 600; earlier validation checkpoints are trajectory diagnostics only;
+- strong evidence requires positive `I_active`, not raw CE alone.
 
-## Strong evidence standard for EXP-003A
-- `I_raw > 0` alone = competition/suppression cost only;
-- persistent `I_active > 0` through the 50M endpoint = strong evidence for a depth-dependent output-space optimization penalty in pretrained Ouro;
-- early positive `I_active` that decays to zero = transient adaptation slowdown;
-- null `I_active` substantially weakens a pure output-class-count explanation for small vocab in Ouro.
+## Stop rule
+- `I_active ~= 0`: Murugan-style output-vocab null survives recurrence at controlled scale; stop the output-space branch.
+- `I_raw > 0` but `I_active ~= 0`: competition/suppression only; stop unless systems cost becomes a separate topic.
+- `I_active < 0`: opposite interaction; stop.
+- robust `I_active > 0` across paired seeds: only outcome that justifies future expensive Ouro-scale testing.
 
 ## Next action
-Implement and smoke-test EXP-003A, including the masked-98K sanity control and exact step-zero loss decomposition, before spending compute on the 50M × 4-arm × 3-seed screen.
+Implement EXP-003C exactly as specified in `experiments/EXP-003C-tiny-recurrent-vocab-control.md`. Do not launch EXP-003A at current compute budget.
