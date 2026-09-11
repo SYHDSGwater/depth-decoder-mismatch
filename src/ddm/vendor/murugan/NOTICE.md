@@ -1,0 +1,1 @@
+Vendored unmodified model.py and feedback.py from https://github.com/kupilikula/lm-head-gradient-bottleneck at fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df. Copyright 2026 Anand Murugan; MIT license included. Used to match the public compact baseline.

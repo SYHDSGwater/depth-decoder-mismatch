@@ -1,0 +1,26 @@
+experiment: EXP-003C
+reference_commit: fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df
+dataset: Salesforce/wikitext
+dataset_revision: b08601e
+dataset_config: wikitext-2-raw-v1
+train_sha256: 2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7
+validation_sha256: 93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5
+depths: [1, 4]
+output_sizes: [256, 4096]
+seq_len: 64
+batch_size: 32
+steps: 600
+report_seeds: [1, 2, 3, 4, 5]
+tuning_seed: 83
+lr_grid: [0.01, 0.02, 0.04]
+eval_steps: [0, 20, 50, 100, 200, 400, 600]
+eval_batches: 8
+validation_sampling_seed: 10001
+optimizer: AdamW
+betas: [0.9, 0.95]
+eps: 1.0e-8
+weight_decay: 0.1
+warmup_steps: 60
+grad_clip: 1.0
+dtype: float32
+tf32: false

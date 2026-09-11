@@ -51,7 +51,7 @@ Scientifically stronger but currently too expensive for this project. Keep as fu
 ## Current experiment order
 1. EXP-001 — Ouro Head Regret sweep: completed, non-confirmatory.
 2. EXP-001b — frozen-native-head residual audit: completed, post-hoc mechanistic diagnostic.
-3. EXP-003C — tiny recurrent × output-vocab causal control: **final planned experiment**.
+3. EXP-003C — tiny recurrent × output-vocab causal control: **completed: no robust positive interaction**.
 4. If EXP-003C is null/raw-only/negative: stop the topic and leave EXP-003A/B/004 as future work.
 5. If EXP-003C shows robust positive `I_active`: expensive Ouro-scale validation may be reconsidered in future work.
 
@@ -73,4 +73,13 @@ Scientifically stronger but currently too expensive for this project. Keep as fu
 - robust `I_active > 0` across paired seeds: only outcome that justifies future expensive Ouro-scale testing.
 
 ## Next action
-Implement EXP-003C exactly as specified in `experiments/EXP-003C-tiny-recurrent-vocab-control.md`. Do not launch EXP-003A at current compute budget.
+EXP-003C completed: I_active=-0.024424, paired-seed 95% interval [-0.085251,+0.036402], four negative seeds and one positive. Stop output-space experiments under the project rule. This is not a proof of zero or a significant negative effect. EXP-003A/B/004 remain future work; no additional training.
+
+## Preserved EXP-003A pause
+- User paused before smoke; only engineering preflight ran. Do not resume training.
+- Local implementation and launch record remain preserved; EXP-003A/B are future work.
+
+## EXP-003C result
+- I_active=-0.024424, paired-seed t95 [-0.085251,+0.036402]; 1/5 positive seeds.
+- Zero-crossing uncertainty does not establish equivalence or a negative causal effect. No positive-trigger secondary run.
+- Six tuning and twenty primary fits audited; results and full record in research/RESULTS.md and research/runs/EXP-003C-20260911.json.

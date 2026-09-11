@@ -1,0 +1,2767 @@
+{
+  "experiment_id": "EXP-003C",
+  "run_id": "EXP-003C-20260911",
+  "status": "completed_and_audited",
+  "phase_last_observed": "complete",
+  "created_at": "2026-09-11T22:16:45.783997",
+  "instance_id": "pro-78730289ac36",
+  "remote_output": "/root/autodl-tmp/EXP-003C-20260911",
+  "config": {
+    "experiment": "EXP-003C",
+    "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+    "dataset": "Salesforce/wikitext",
+    "dataset_revision": "b08601e",
+    "dataset_config": "wikitext-2-raw-v1",
+    "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+    "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+    "depths": [
+      1,
+      4
+    ],
+    "output_sizes": [
+      256,
+      4096
+    ],
+    "seq_len": 64,
+    "batch_size": 32,
+    "steps": 600,
+    "report_seeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "tuning_seed": 83,
+    "lr_grid": [
+      0.01,
+      0.02,
+      0.04
+    ],
+    "eval_steps": [
+      0,
+      20,
+      50,
+      100,
+      200,
+      400,
+      600
+    ],
+    "eval_batches": 8,
+    "validation_sampling_seed": 10001,
+    "optimizer": "AdamW",
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.1,
+    "warmup_steps": 60,
+    "grad_clip": 1.0,
+    "dtype": "float32",
+    "tf32": false
+  },
+  "preflight_tests_passed": 2,
+  "shared_storage_unchanged": true,
+  "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+  "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+  "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+  "dirty_source": true,
+  "primary": [
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T1-V256-s1-lr0.01",
+      "phase": "primary",
+      "depth": 1,
+      "output_size": 256,
+      "seed": 1,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "b7b75cf32a1f953c54ae45eb6bddefa776c92a1657ab17bcb1017f786fedac7f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.219471116616603,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.562673192558577,
+          "CE_active": 5.562673192558577,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 4.058995118466555,
+          "CE_active": 4.058995118466555,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 2.9101327365533507,
+          "CE_active": 2.9101327365533507,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.6205958807481693,
+          "CE_active": 2.6205958807481693,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.4999617193448103,
+          "CE_active": 2.4999617193448103,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.29935881758081,
+          "CE_active": 2.29935881758081,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.219471116616603,
+          "CE_active": 2.219471116616603,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.219471116616603,
+        "CE_active": 2.219471116616603,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "primary-T1-V256-s1-lr0.01.pt",
+      "validation_arrays": "primary-T1-V256-s1-lr0.01-validation.npy",
+      "runtime_seconds": 11.542007319629192,
+      "peak_memory_bytes": 44987392,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T1-V4096-s1-lr0.01",
+      "phase": "primary",
+      "depth": 1,
+      "output_size": 4096,
+      "seed": 1,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 192192,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "b7b75cf32a1f953c54ae45eb6bddefa776c92a1657ab17bcb1017f786fedac7f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.2263281788740983,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 8.32806502757012,
+          "CE_active": 5.562673192558577,
+          "CE_competition": 2.7653918376308866,
+          "m_dummy": 0.9370482736485428
+        },
+        {
+          "step": 20,
+          "CE_raw": 6.332806555146817,
+          "CE_active": 4.3867170405283105,
+          "CE_competition": 1.9460895102238283,
+          "m_dummy": 0.857168449107121
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.053714551962912,
+          "CE_active": 3.041261708483944,
+          "CE_competition": 0.012452841910999268,
+          "m_dummy": 0.012306213123245868
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.6800125783875046,
+          "CE_active": 2.6781611725000403,
+          "CE_competition": 0.0018513673276174814,
+          "m_dummy": 0.0018384840802310176
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.500712126020062,
+          "CE_active": 2.4985104124242525,
+          "CE_competition": 0.002201707480708137,
+          "m_dummy": 0.0020951754849840576
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.29642250768012,
+          "CE_active": 2.296240738799014,
+          "CE_competition": 0.00018167513189837337,
+          "m_dummy": 0.00017987305050248814
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.2265035708685446,
+          "CE_active": 2.2263281788740983,
+          "CE_competition": 0.00017528890748508275,
+          "m_dummy": 0.00017077768554064204
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.2265035708685446,
+        "CE_active": 2.2263281788740983,
+        "CE_competition": 0.00017528890748508275,
+        "m_dummy": 0.00017077768554064204
+      },
+      "checkpoint": "primary-T1-V4096-s1-lr0.01.pt",
+      "validation_arrays": "primary-T1-V4096-s1-lr0.01-validation.npy",
+      "runtime_seconds": 12.273334860801697,
+      "peak_memory_bytes": 172291072,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T4-V256-s1-lr0.04",
+      "phase": "primary",
+      "depth": 4,
+      "output_size": 256,
+      "seed": 1,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "b7b75cf32a1f953c54ae45eb6bddefa776c92a1657ab17bcb1017f786fedac7f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.5072705277137857,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.551121153956046,
+          "CE_active": 5.551121153956046,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.248525646311464,
+          "CE_active": 3.248525646311464,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.192386404698482,
+          "CE_active": 3.192386404698482,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 3.025506936268357,
+          "CE_active": 3.025506936268357,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 3.0215405417911825,
+          "CE_active": 3.0215405417911825,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.6436943614448865,
+          "CE_active": 2.6436943614448865,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.5072705277137857,
+          "CE_active": 2.5072705277137857,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.5072705277137857,
+        "CE_active": 2.5072705277137857,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "primary-T4-V256-s1-lr0.04.pt",
+      "validation_arrays": "primary-T4-V256-s1-lr0.04-validation.npy",
+      "runtime_seconds": 30.06935102492571,
+      "peak_memory_bytes": 99251200,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T4-V4096-s1-lr0.04",
+      "phase": "primary",
+      "depth": 4,
+      "output_size": 4096,
+      "seed": 1,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 192192,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "b7b75cf32a1f953c54ae45eb6bddefa776c92a1657ab17bcb1017f786fedac7f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.443554407274007,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 8.32527724141255,
+          "CE_active": 5.551121153956046,
+          "CE_competition": 2.7741560811991803,
+          "m_dummy": 0.937597608739452
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.2756064388668165,
+          "CE_active": 3.2520306245569373,
+          "CE_competition": 0.02357581359683536,
+          "m_dummy": 0.023300073908444574
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.2021721187702497,
+          "CE_active": 3.201907889197173,
+          "CE_competition": 0.00026425241958349943,
+          "m_dummy": 0.0002642174959603949
+        },
+        {
+          "step": 100,
+          "CE_raw": 3.0396491156352567,
+          "CE_active": 3.037875347697991,
+          "CE_competition": 0.0017735987203195691,
+          "m_dummy": 0.00176622823599637
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.8779363609137363,
+          "CE_active": 2.8768491137743695,
+          "CE_competition": 0.0010872551065403968,
+          "m_dummy": 0.0010840001994867343
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.5719276011182046,
+          "CE_active": 2.5717481642560642,
+          "CE_competition": 0.0001793525880202651,
+          "m_dummy": 0.00017881066013119423
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.443655069659087,
+          "CE_active": 2.443554407274007,
+          "CE_competition": 0.00010059212218038738,
+          "m_dummy": 0.00010012552563441052
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.443655069659087,
+        "CE_active": 2.443554407274007,
+        "CE_competition": 0.00010059212218038738,
+        "m_dummy": 0.00010012552563441052
+      },
+      "checkpoint": "primary-T4-V4096-s1-lr0.04.pt",
+      "validation_arrays": "primary-T4-V4096-s1-lr0.04-validation.npy",
+      "runtime_seconds": 29.69160610064864,
+      "peak_memory_bytes": 226554880,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T1-V256-s2-lr0.01",
+      "phase": "primary",
+      "depth": 1,
+      "output_size": 256,
+      "seed": 2,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "f80ff3862bdcdbc9c87e106f351b689767fd9a46f71e586a2e6f86b9fb8305aa",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.2673422623241777,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.544814489112468,
+          "CE_active": 5.544814489112468,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 4.006702991260681,
+          "CE_active": 4.006702991260681,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.0567757599128527,
+          "CE_active": 3.0567757599128527,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.661620557448259,
+          "CE_active": 2.661620557448259,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.5192733836084926,
+          "CE_active": 2.5192733836084926,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.330239232265626,
+          "CE_active": 2.330239232265626,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.2673422623241777,
+          "CE_active": 2.2673422623241777,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.2673422623241777,
+        "CE_active": 2.2673422623241777,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "primary-T1-V256-s2-lr0.01.pt",
+      "validation_arrays": "primary-T1-V256-s2-lr0.01-validation.npy",
+      "runtime_seconds": 11.299853529781103,
+      "peak_memory_bytes": 44987392,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T1-V4096-s2-lr0.01",
+      "phase": "primary",
+      "depth": 1,
+      "output_size": 4096,
+      "seed": 2,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 192192,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "f80ff3862bdcdbc9c87e106f351b689767fd9a46f71e586a2e6f86b9fb8305aa",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.3113364091358335,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 8.318844906927552,
+          "CE_active": 5.544814489112468,
+          "CE_competition": 2.7740304174658377,
+          "m_dummy": 0.9375881480627868
+        },
+        {
+          "step": 20,
+          "CE_raw": 6.193780197121669,
+          "CE_active": 4.320033447002061,
+          "CE_competition": 1.8737467482860666,
+          "m_dummy": 0.8464526414500142
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.186778028793924,
+          "CE_active": 3.174597342906054,
+          "CE_competition": 0.012180688267108053,
+          "m_dummy": 0.012106536624969522
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.705408162020831,
+          "CE_active": 2.7037100975658177,
+          "CE_competition": 0.001698035019217059,
+          "m_dummy": 0.001685521279294444
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.54328677950366,
+          "CE_active": 2.5423799838440573,
+          "CE_competition": 0.0009067376377061009,
+          "m_dummy": 0.0008999501466825655
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.3832230060718302,
+          "CE_active": 2.382982326661619,
+          "CE_competition": 0.00024056292022578418,
+          "m_dummy": 0.00022363475587543202
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.3115477852392132,
+          "CE_active": 2.3113364091358335,
+          "CE_competition": 0.0002112795482389629,
+          "m_dummy": 0.00020227860075835297
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.3115477852392132,
+        "CE_active": 2.3113364091358335,
+        "CE_competition": 0.0002112795482389629,
+        "m_dummy": 0.00020227860075835297
+      },
+      "checkpoint": "primary-T1-V4096-s2-lr0.01.pt",
+      "validation_arrays": "primary-T1-V4096-s2-lr0.01-validation.npy",
+      "runtime_seconds": 11.905013233423233,
+      "peak_memory_bytes": 172291072,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T4-V256-s2-lr0.04",
+      "phase": "primary",
+      "depth": 4,
+      "output_size": 256,
+      "seed": 2,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "f80ff3862bdcdbc9c87e106f351b689767fd9a46f71e586a2e6f86b9fb8305aa",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.3929068205899853,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.587059139856137,
+          "CE_active": 5.587059139856137,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.2817340971232625,
+          "CE_active": 3.2817340971232625,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.194694962236099,
+          "CE_active": 3.194694962236099,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 3.0564316292657168,
+          "CE_active": 3.0564316292657168,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.794301658443146,
+          "CE_active": 2.794301658443146,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.500855567841654,
+          "CE_active": 2.500855567841654,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.3929068205899853,
+          "CE_active": 2.3929068205899853,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.3929068205899853,
+        "CE_active": 2.3929068205899853,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "primary-T4-V256-s2-lr0.04.pt",
+      "validation_arrays": "primary-T4-V256-s2-lr0.04-validation.npy",
+      "runtime_seconds": 28.587387207895517,
+      "peak_memory_bytes": 99251200,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T4-V4096-s2-lr0.04",
+      "phase": "primary",
+      "depth": 4,
+      "output_size": 4096,
+      "seed": 2,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 192192,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "f80ff3862bdcdbc9c87e106f351b689767fd9a46f71e586a2e6f86b9fb8305aa",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.4103125147761375,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 8.357450201263418,
+          "CE_active": 5.587059139856137,
+          "CE_competition": 2.77039105334552,
+          "m_dummy": 0.9373619700454583
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.266625744305202,
+          "CE_active": 3.245955258709728,
+          "CE_competition": 0.020670474303187802,
+          "m_dummy": 0.020458304333715205
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.196126115915831,
+          "CE_active": 3.1959770040484727,
+          "CE_competition": 0.00014922214904800057,
+          "m_dummy": 0.00014921102071863146
+        },
+        {
+          "step": 100,
+          "CE_raw": 3.032481060770806,
+          "CE_active": 3.031074706923391,
+          "CE_competition": 0.0014063636772334576,
+          "m_dummy": 0.0014045172048966492
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.765815774557268,
+          "CE_active": 2.7648217467758514,
+          "CE_competition": 0.0009940004674717784,
+          "m_dummy": 0.000993175948910574
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.5113771709646926,
+          "CE_active": 2.5112486116925083,
+          "CE_competition": 0.00012844579759985209,
+          "m_dummy": 0.00012739634622071366
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.410458406507871,
+          "CE_active": 2.4103125147761375,
+          "CE_competition": 0.0001458187762182206,
+          "m_dummy": 0.00014370312285644227
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.410458406507871,
+        "CE_active": 2.4103125147761375,
+        "CE_competition": 0.0001458187762182206,
+        "m_dummy": 0.00014370312285644227
+      },
+      "checkpoint": "primary-T4-V4096-s2-lr0.04.pt",
+      "validation_arrays": "primary-T4-V4096-s2-lr0.04-validation.npy",
+      "runtime_seconds": 29.571651808917522,
+      "peak_memory_bytes": 226554880,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T1-V256-s3-lr0.01",
+      "phase": "primary",
+      "depth": 1,
+      "output_size": 256,
+      "seed": 3,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "abb2f1a2fdfd3f2dba14811c049b12a252717212f47fa51fb0c526bbed8dbe6f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.2209023465664757,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.566374616057146,
+          "CE_active": 5.566374616057146,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 4.054914252948947,
+          "CE_active": 4.054914252948947,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 2.836638682292687,
+          "CE_active": 2.836638682292687,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.6158134334664283,
+          "CE_active": 2.6158134334664283,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.489341753221538,
+          "CE_active": 2.489341753221538,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.2993343475480685,
+          "CE_active": 2.2993343475480685,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.2209023465664757,
+          "CE_active": 2.2209023465664757,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.2209023465664757,
+        "CE_active": 2.2209023465664757,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "primary-T1-V256-s3-lr0.01.pt",
+      "validation_arrays": "primary-T1-V256-s3-lr0.01-validation.npy",
+      "runtime_seconds": 11.55377946794033,
+      "peak_memory_bytes": 44987392,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T1-V4096-s3-lr0.01",
+      "phase": "primary",
+      "depth": 1,
+      "output_size": 4096,
+      "seed": 3,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 192192,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "abb2f1a2fdfd3f2dba14811c049b12a252717212f47fa51fb0c526bbed8dbe6f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.2323159095871006,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 8.339090083783958,
+          "CE_active": 5.566374616057146,
+          "CE_competition": 2.7727154732274357,
+          "m_dummy": 0.937507535534678
+        },
+        {
+          "step": 20,
+          "CE_raw": 6.220726879924769,
+          "CE_active": 4.332606169627979,
+          "CE_competition": 1.8881207099475432,
+          "m_dummy": 0.8486438921645458
+        },
+        {
+          "step": 50,
+          "CE_raw": 2.9917953528529324,
+          "CE_active": 2.9530218873660488,
+          "CE_competition": 0.038773461448727176,
+          "m_dummy": 0.03638639904091434
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.6540527644183385,
+          "CE_active": 2.652012185631065,
+          "CE_competition": 0.0020405371906235814,
+          "m_dummy": 0.0020221444160641866
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.4856413164598052,
+          "CE_active": 2.483212665231804,
+          "CE_competition": 0.002428604173474014,
+          "m_dummy": 0.002238049947820675
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.2976374866872504,
+          "CE_active": 2.297391504952685,
+          "CE_competition": 0.00024590996326878667,
+          "m_dummy": 0.00023724144762474197
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.232659232499344,
+          "CE_active": 2.2323159095871006,
+          "CE_competition": 0.000343242718372494,
+          "m_dummy": 0.0002969691948779135
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.232659232499344,
+        "CE_active": 2.2323159095871006,
+        "CE_competition": 0.000343242718372494,
+        "m_dummy": 0.0002969691948779135
+      },
+      "checkpoint": "primary-T1-V4096-s3-lr0.01.pt",
+      "validation_arrays": "primary-T1-V4096-s3-lr0.01-validation.npy",
+      "runtime_seconds": 11.97441067546606,
+      "peak_memory_bytes": 172291072,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T4-V256-s3-lr0.04",
+      "phase": "primary",
+      "depth": 4,
+      "output_size": 256,
+      "seed": 3,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "abb2f1a2fdfd3f2dba14811c049b12a252717212f47fa51fb0c526bbed8dbe6f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.4328014738385946,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.5527047786454204,
+          "CE_active": 5.5527047786454204,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.2421663664717926,
+          "CE_active": 3.2421663664717926,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.196475380565971,
+          "CE_active": 3.196475380565971,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 3.1878567871972336,
+          "CE_active": 3.1878567871972336,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.79960620368729,
+          "CE_active": 2.79960620368729,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.5415559304206,
+          "CE_active": 2.5415559304206,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.4328014738385946,
+          "CE_active": 2.4328014738385946,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.4328014738385946,
+        "CE_active": 2.4328014738385946,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "primary-T4-V256-s3-lr0.04.pt",
+      "validation_arrays": "primary-T4-V256-s3-lr0.04-validation.npy",
+      "runtime_seconds": 28.935321308672428,
+      "peak_memory_bytes": 99251200,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T4-V4096-s3-lr0.04",
+      "phase": "primary",
+      "depth": 4,
+      "output_size": 4096,
+      "seed": 3,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 192192,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "abb2f1a2fdfd3f2dba14811c049b12a252717212f47fa51fb0c526bbed8dbe6f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.3910862978171963,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 8.329424234980252,
+          "CE_active": 5.5527047786454204,
+          "CE_competition": 2.7767194525513332,
+          "m_dummy": 0.9377571214208729
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.269021038446226,
+          "CE_active": 3.249198599747615,
+          "CE_competition": 0.019822437141556293,
+          "m_dummy": 0.019627264231985464
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.205366711503302,
+          "CE_active": 3.2052994159821537,
+          "CE_competition": 6.757717346772552e-05,
+          "m_dummy": 6.757489072173328e-05
+        },
+        {
+          "step": 100,
+          "CE_raw": 3.005385709067923,
+          "CE_active": 3.0005659487796947,
+          "CE_competition": 0.004819656227482483,
+          "m_dummy": 0.00479306903535992
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.782861116262211,
+          "CE_active": 2.782034537398431,
+          "CE_competition": 0.0008265715441666543,
+          "m_dummy": 0.0008261251146159942
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.4791753625999036,
+          "CE_active": 2.4789724951181142,
+          "CE_competition": 0.00020277732983231544,
+          "m_dummy": 0.00019571701032994326
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.391189600195048,
+          "CE_active": 2.3910862978171963,
+          "CE_competition": 0.00010319924331270158,
+          "m_dummy": 0.00010275640752967913
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.391189600195048,
+        "CE_active": 2.3910862978171963,
+        "CE_competition": 0.00010319924331270158,
+        "m_dummy": 0.00010275640752967913
+      },
+      "checkpoint": "primary-T4-V4096-s3-lr0.04.pt",
+      "validation_arrays": "primary-T4-V4096-s3-lr0.04-validation.npy",
+      "runtime_seconds": 29.87398348376155,
+      "peak_memory_bytes": 226554880,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T1-V256-s4-lr0.01",
+      "phase": "primary",
+      "depth": 1,
+      "output_size": 256,
+      "seed": 4,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "0e9a0d57866799ad2b159204da0ec16ba13d7c3754d2921af7d1731f452269ea",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.2381750237730955,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.527604675502516,
+          "CE_active": 5.527604675502516,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 4.008998301709653,
+          "CE_active": 4.008998301709653,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 2.945585355282674,
+          "CE_active": 2.945585355282674,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.651746922017537,
+          "CE_active": 2.651746922017537,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.512701178867701,
+          "CE_active": 2.512701178867701,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.30810071658874,
+          "CE_active": 2.30810071658874,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.2381750237730955,
+          "CE_active": 2.2381750237730955,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.2381750237730955,
+        "CE_active": 2.2381750237730955,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "primary-T1-V256-s4-lr0.01.pt",
+      "validation_arrays": "primary-T1-V256-s4-lr0.01-validation.npy",
+      "runtime_seconds": 10.432170890271664,
+      "peak_memory_bytes": 44987392,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T1-V4096-s4-lr0.01",
+      "phase": "primary",
+      "depth": 1,
+      "output_size": 4096,
+      "seed": 4,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 192192,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "0e9a0d57866799ad2b159204da0ec16ba13d7c3754d2921af7d1731f452269ea",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.2819121699075993,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 8.291174178622896,
+          "CE_active": 5.527604675502516,
+          "CE_competition": 2.763569505070336,
+          "m_dummy": 0.9369330440567865
+        },
+        {
+          "step": 20,
+          "CE_raw": 6.159193208295619,
+          "CE_active": 4.317992992931977,
+          "CE_competition": 1.8412002169934567,
+          "m_dummy": 0.841373032759293
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.0567300052825885,
+          "CE_active": 3.028726970365824,
+          "CE_competition": 0.028003033279674128,
+          "m_dummy": 0.02666482241777146
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.6942686028578464,
+          "CE_active": 2.6877591672373455,
+          "CE_competition": 0.006509422353701666,
+          "m_dummy": 0.006045683011101199
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.544061110081884,
+          "CE_active": 2.542726000617108,
+          "CE_competition": 0.00133508478756994,
+          "m_dummy": 0.001322679603604937
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.3510837191308838,
+          "CE_active": 2.350664065366857,
+          "CE_competition": 0.0004195622750557959,
+          "m_dummy": 0.0003813006728366278
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.282036075629236,
+          "CE_active": 2.2819121699075993,
+          "CE_competition": 0.00012381645501591265,
+          "m_dummy": 0.0001225027610841367
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.282036075629236,
+        "CE_active": 2.2819121699075993,
+        "CE_competition": 0.00012381645501591265,
+        "m_dummy": 0.0001225027610841367
+      },
+      "checkpoint": "primary-T1-V4096-s4-lr0.01.pt",
+      "validation_arrays": "primary-T1-V4096-s4-lr0.01-validation.npy",
+      "runtime_seconds": 11.218783259391785,
+      "peak_memory_bytes": 172291072,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T4-V256-s4-lr0.04",
+      "phase": "primary",
+      "depth": 4,
+      "output_size": 256,
+      "seed": 4,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "0e9a0d57866799ad2b159204da0ec16ba13d7c3754d2921af7d1731f452269ea",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.4379848687849233,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.5369780079927295,
+          "CE_active": 5.5369780079927295,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.270711228782602,
+          "CE_active": 3.270711228782602,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.1895332972417236,
+          "CE_active": 3.1895332972417236,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.9164282668352826,
+          "CE_active": 2.9164282668352826,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.726868328409182,
+          "CE_active": 2.726868328409182,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.5373864598147975,
+          "CE_active": 2.5373864598147975,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.4379848687849233,
+          "CE_active": 2.4379848687849233,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.4379848687849233,
+        "CE_active": 2.4379848687849233,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "primary-T4-V256-s4-lr0.04.pt",
+      "validation_arrays": "primary-T4-V256-s4-lr0.04-validation.npy",
+      "runtime_seconds": 29.580615881830454,
+      "peak_memory_bytes": 99251200,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T4-V4096-s4-lr0.04",
+      "phase": "primary",
+      "depth": 4,
+      "output_size": 4096,
+      "seed": 4,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 192192,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "0e9a0d57866799ad2b159204da0ec16ba13d7c3754d2921af7d1731f452269ea",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.452940401119406,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 8.313981549668824,
+          "CE_active": 5.5369780079927295,
+          "CE_competition": 2.777003547613276,
+          "m_dummy": 0.9377745987003436
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.2337070944777224,
+          "CE_active": 3.2185420234163757,
+          "CE_competition": 0.015165063581662253,
+          "m_dummy": 0.015050653049343055
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.202873734997411,
+          "CE_active": 3.2025558338791598,
+          "CE_competition": 0.0003178993356414139,
+          "m_dummy": 0.00031784785017219264
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.9604155234846985,
+          "CE_active": 2.95419777425559,
+          "CE_competition": 0.006217823276529089,
+          "m_dummy": 0.006124311417297967
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.796354614190932,
+          "CE_active": 2.795683412485232,
+          "CE_competition": 0.0006712132308166474,
+          "m_dummy": 0.0006708744503769459
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.540260026870783,
+          "CE_active": 2.53999805164392,
+          "CE_competition": 0.00026188435731455684,
+          "m_dummy": 0.0002612112988712237
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.4529793027662663,
+          "CE_active": 2.452940401119406,
+          "CE_competition": 3.88326880056411e-05,
+          "m_dummy": 3.878581397303432e-05
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.4529793027662663,
+        "CE_active": 2.452940401119406,
+        "CE_competition": 3.88326880056411e-05,
+        "m_dummy": 3.878581397303432e-05
+      },
+      "checkpoint": "primary-T4-V4096-s4-lr0.04.pt",
+      "validation_arrays": "primary-T4-V4096-s4-lr0.04-validation.npy",
+      "runtime_seconds": 30.075989197939634,
+      "peak_memory_bytes": 226554880,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T1-V256-s5-lr0.01",
+      "phase": "primary",
+      "depth": 1,
+      "output_size": 256,
+      "seed": 5,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "2eedec6f4efd7195a5580b80171b2254308d92bd62ea1cf81e988545e61a470f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.205761682129406,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.5459909952187445,
+          "CE_active": 5.5459909952187445,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 4.021010542448494,
+          "CE_active": 4.021010542448494,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 2.7961653458896762,
+          "CE_active": 2.7961653458896762,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.623725626864598,
+          "CE_active": 2.623725626864598,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.4649120851200905,
+          "CE_active": 2.4649120851200905,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.2800754521805686,
+          "CE_active": 2.2800754521805686,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.205761682129406,
+          "CE_active": 2.205761682129406,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.205761682129406,
+        "CE_active": 2.205761682129406,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "primary-T1-V256-s5-lr0.01.pt",
+      "validation_arrays": "primary-T1-V256-s5-lr0.01-validation.npy",
+      "runtime_seconds": 11.892099931836128,
+      "peak_memory_bytes": 44987392,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T1-V4096-s5-lr0.01",
+      "phase": "primary",
+      "depth": 1,
+      "output_size": 4096,
+      "seed": 5,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 192192,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "2eedec6f4efd7195a5580b80171b2254308d92bd62ea1cf81e988545e61a470f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.226680127739826,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 8.317053626524284,
+          "CE_active": 5.5459909952187445,
+          "CE_competition": 2.7710626301704906,
+          "m_dummy": 0.9374040665607026
+        },
+        {
+          "step": 20,
+          "CE_raw": 6.2350675946509,
+          "CE_active": 4.326997938667773,
+          "CE_competition": 1.908069651486585,
+          "m_dummy": 0.8516311573985149
+        },
+        {
+          "step": 50,
+          "CE_raw": 2.936656834826863,
+          "CE_active": 2.9081691036153643,
+          "CE_competition": 0.028487731848144904,
+          "m_dummy": 0.02779092796910021
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.645366888405988,
+          "CE_active": 2.642819742923166,
+          "CE_competition": 0.0025471271364949644,
+          "m_dummy": 0.0025179459709959717
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.4972265750002407,
+          "CE_active": 2.496528241901501,
+          "CE_competition": 0.0006983096245676279,
+          "m_dummy": 0.0006934532718581021
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.299377864088626,
+          "CE_active": 2.2988498949581526,
+          "CE_competition": 0.0005278268363326788,
+          "m_dummy": 0.00045130605549204006
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.226853203611995,
+          "CE_active": 2.226680127739826,
+          "CE_competition": 0.0001729690411593765,
+          "m_dummy": 0.00017017016008608749
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.226853203611995,
+        "CE_active": 2.226680127739826,
+        "CE_competition": 0.0001729690411593765,
+        "m_dummy": 0.00017017016008608749
+      },
+      "checkpoint": "primary-T1-V4096-s5-lr0.01.pt",
+      "validation_arrays": "primary-T1-V4096-s5-lr0.01-validation.npy",
+      "runtime_seconds": 12.144373279064894,
+      "peak_memory_bytes": 172291072,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T4-V256-s5-lr0.04",
+      "phase": "primary",
+      "depth": 4,
+      "output_size": 256,
+      "seed": 5,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "2eedec6f4efd7195a5580b80171b2254308d92bd62ea1cf81e988545e61a470f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.340092257637849,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.569782585342182,
+          "CE_active": 5.569782585342182,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.5530024695108295,
+          "CE_active": 3.5530024695108295,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.1652314152088366,
+          "CE_active": 3.1652314152088366,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 3.0191180209149024,
+          "CE_active": 3.0191180209149024,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.683895752416902,
+          "CE_active": 2.683895752416902,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.429177036232204,
+          "CE_active": 2.429177036232204,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.340092257637849,
+          "CE_active": 2.340092257637849,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.340092257637849,
+        "CE_active": 2.340092257637849,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "primary-T4-V256-s5-lr0.04.pt",
+      "validation_arrays": "primary-T4-V256-s5-lr0.04-validation.npy",
+      "runtime_seconds": 29.40882395207882,
+      "peak_memory_bytes": 99251200,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "primary-T4-V4096-s5-lr0.04",
+      "phase": "primary",
+      "depth": 4,
+      "output_size": 4096,
+      "seed": 5,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 192192,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "2eedec6f4efd7195a5580b80171b2254308d92bd62ea1cf81e988545e61a470f",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.417961433942537,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 8.346404001989868,
+          "CE_active": 5.569782585342182,
+          "CE_competition": 2.7766214203147683,
+          "m_dummy": 0.9377511513048375
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.2536389881861396,
+          "CE_active": 3.229735211163643,
+          "CE_competition": 0.023903774126665667,
+          "m_dummy": 0.023356141797307828
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.1940415051794844,
+          "CE_active": 3.193407825223403,
+          "CE_competition": 0.000633679359452799,
+          "m_dummy": 0.00032554798667394635
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.978428794638603,
+          "CE_active": 2.9768170639144955,
+          "CE_competition": 0.001611537765711546,
+          "m_dummy": 0.0016077500132143374
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.7228199197015783,
+          "CE_active": 2.7220503125936375,
+          "CE_competition": 0.0007696400571148843,
+          "m_dummy": 0.00076854446373531
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.504816189144549,
+          "CE_active": 2.5045113260260905,
+          "CE_competition": 0.00030477766995318234,
+          "m_dummy": 0.000298596993025195
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.4180525022657093,
+          "CE_active": 2.417961433942537,
+          "CE_competition": 9.101600153371692e-05,
+          "m_dummy": 9.054050881601022e-05
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.4180525022657093,
+        "CE_active": 2.417961433942537,
+        "CE_competition": 9.101600153371692e-05,
+        "m_dummy": 9.054050881601022e-05
+      },
+      "checkpoint": "primary-T4-V4096-s5-lr0.04.pt",
+      "validation_arrays": "primary-T4-V4096-s5-lr0.04-validation.npy",
+      "runtime_seconds": 29.80097632482648,
+      "peak_memory_bytes": 226554880,
+      "validity_status": "paired_checks_passed"
+    }
+  ],
+  "tuning": [
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "tuning-T1-V256-s83-lr0.01",
+      "phase": "tuning",
+      "depth": 1,
+      "output_size": 256,
+      "seed": 83,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "c5a8f1606d19221107dd763174e25026a487285c30acdc931203ebc45b4985f2",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.2393426734954573,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.533305975433905,
+          "CE_active": 5.533305975433905,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 4.03304294172267,
+          "CE_active": 4.03304294172267,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 2.928798947003088,
+          "CE_active": 2.928798947003088,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.657319316081157,
+          "CE_active": 2.657319316081157,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.5119979169434146,
+          "CE_active": 2.5119979169434146,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.326492385752772,
+          "CE_active": 2.326492385752772,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.2393426734954573,
+          "CE_active": 2.2393426734954573,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.2393426734954573,
+        "CE_active": 2.2393426734954573,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "tuning-T1-V256-s83-lr0.01.pt",
+      "validation_arrays": "tuning-T1-V256-s83-lr0.01-validation.npy",
+      "runtime_seconds": 12.52794798091054,
+      "peak_memory_bytes": 44987392,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "tuning-T1-V256-s83-lr0.02",
+      "phase": "tuning",
+      "depth": 1,
+      "output_size": 256,
+      "seed": 83,
+      "lr": 0.02,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "c5a8f1606d19221107dd763174e25026a487285c30acdc931203ebc45b4985f2",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.251155138674747,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.533305975433905,
+          "CE_active": 5.533305975433905,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.3460760129528353,
+          "CE_active": 3.3460760129528353,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 2.914436394239601,
+          "CE_active": 2.914436394239601,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.6612984431785662,
+          "CE_active": 2.6612984431785662,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.5085533536749836,
+          "CE_active": 2.5085533536749836,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.346227890464206,
+          "CE_active": 2.346227890464206,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.251155138674747,
+          "CE_active": 2.251155138674747,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.251155138674747,
+        "CE_active": 2.251155138674747,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "tuning-T1-V256-s83-lr0.02.pt",
+      "validation_arrays": "tuning-T1-V256-s83-lr0.02-validation.npy",
+      "runtime_seconds": 12.295693591237068,
+      "peak_memory_bytes": 44987392,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "tuning-T1-V256-s83-lr0.04",
+      "phase": "tuning",
+      "depth": 1,
+      "output_size": 256,
+      "seed": 83,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "c5a8f1606d19221107dd763174e25026a487285c30acdc931203ebc45b4985f2",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.2535684185276423,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.533305975433905,
+          "CE_active": 5.533305975433905,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.219509344227845,
+          "CE_active": 3.219509344227845,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 2.838922618806464,
+          "CE_active": 2.838922618806464,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.6534137539531457,
+          "CE_active": 2.6534137539531457,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.532694219179689,
+          "CE_active": 2.532694219179689,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.359035771529051,
+          "CE_active": 2.359035771529051,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.2535684185276423,
+          "CE_active": 2.2535684185276423,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.2535684185276423,
+        "CE_active": 2.2535684185276423,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "tuning-T1-V256-s83-lr0.04.pt",
+      "validation_arrays": "tuning-T1-V256-s83-lr0.04-validation.npy",
+      "runtime_seconds": 11.949616555124521,
+      "peak_memory_bytes": 45275136,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "tuning-T4-V256-s83-lr0.01",
+      "phase": "tuning",
+      "depth": 4,
+      "output_size": 256,
+      "seed": 83,
+      "lr": 0.01,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "c5a8f1606d19221107dd763174e25026a487285c30acdc931203ebc45b4985f2",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.54268773810918,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.540282200236106,
+          "CE_active": 5.540282200236106,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 4.042447123953025,
+          "CE_active": 4.042447123953025,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.186497619499278,
+          "CE_active": 3.186497619499278,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 3.1797291570110247,
+          "CE_active": 3.1797291570110247,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 3.0106358037228347,
+          "CE_active": 3.0106358037228347,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.61678702475524,
+          "CE_active": 2.61678702475524,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.54268773810918,
+          "CE_active": 2.54268773810918,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.54268773810918,
+        "CE_active": 2.54268773810918,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "tuning-T4-V256-s83-lr0.01.pt",
+      "validation_arrays": "tuning-T4-V256-s83-lr0.01-validation.npy",
+      "runtime_seconds": 25.74263622611761,
+      "peak_memory_bytes": 99826688,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "tuning-T4-V256-s83-lr0.02",
+      "phase": "tuning",
+      "depth": 4,
+      "output_size": 256,
+      "seed": 83,
+      "lr": 0.02,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "c5a8f1606d19221107dd763174e25026a487285c30acdc931203ebc45b4985f2",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.3748527817624563,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.540282200236106,
+          "CE_active": 5.540282200236106,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.363073230430018,
+          "CE_active": 3.363073230430018,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.1314027060288936,
+          "CE_active": 3.1314027060288936,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.8410516645526513,
+          "CE_active": 2.8410516645526513,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.6636142954789648,
+          "CE_active": 2.6636142954789648,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.4411523962481283,
+          "CE_active": 2.4411523962481283,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.3748527817624563,
+          "CE_active": 2.3748527817624563,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.3748527817624563,
+        "CE_active": 2.3748527817624563,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "tuning-T4-V256-s83-lr0.02.pt",
+      "validation_arrays": "tuning-T4-V256-s83-lr0.02-validation.npy",
+      "runtime_seconds": 24.038759104907513,
+      "peak_memory_bytes": 99826688,
+      "validity_status": "paired_checks_passed"
+    },
+    {
+      "experiment": "EXP-003C",
+      "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+      "dataset": "WikiText-2 raw UTF-8 bytes",
+      "dataset_revision": "b08601e",
+      "tokenizer": "identity byte IDs 0..255",
+      "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+      "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+      "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+      "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+      "dirty_source": true,
+      "name": "tuning-T4-V256-s83-lr0.04",
+      "phase": "tuning",
+      "depth": 4,
+      "output_size": 256,
+      "seed": 83,
+      "lr": 0.04,
+      "head_family": "linear_softmax",
+      "parameter_count": 69312,
+      "initialization": "public normal(.02) active/body; independent normal(.02) dummy; paired shared tensors",
+      "optimizer": "AdamW",
+      "steps": 600,
+      "supervised_tokens": 1228800,
+      "batch_order_sha256": "c5a8f1606d19221107dd763174e25026a487285c30acdc931203ebc45b4985f2",
+      "selected_checkpoint_step": 600,
+      "best_validation_loss": 2.2879981972169503,
+      "best_validation_step": 600,
+      "test_loss": null,
+      "test_status": "not accessed; primary endpoint is fixed validation per card",
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "history": [
+        {
+          "step": 0,
+          "CE_raw": 5.540282200236106,
+          "CE_active": 5.540282200236106,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 20,
+          "CE_raw": 3.231088585482212,
+          "CE_active": 3.231088585482212,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 50,
+          "CE_raw": 3.188246930076275,
+          "CE_active": 3.188246930076275,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 100,
+          "CE_raw": 2.8661486217934,
+          "CE_active": 2.8661486217934,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 200,
+          "CE_raw": 2.644681482519445,
+          "CE_active": 2.644681482519445,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 400,
+          "CE_raw": 2.3887536409743007,
+          "CE_active": 2.3887536409743007,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        },
+        {
+          "step": 600,
+          "CE_raw": 2.2879981972169503,
+          "CE_active": 2.2879981972169503,
+          "CE_competition": 0.0,
+          "m_dummy": 0.0
+        }
+      ],
+      "final": {
+        "step": 600,
+        "CE_raw": 2.2879981972169503,
+        "CE_active": 2.2879981972169503,
+        "CE_competition": 0.0,
+        "m_dummy": 0.0
+      },
+      "checkpoint": "tuning-T4-V256-s83-lr0.04.pt",
+      "validation_arrays": "tuning-T4-V256-s83-lr0.04-validation.npy",
+      "runtime_seconds": 24.464940521866083,
+      "peak_memory_bytes": 99251200,
+      "validity_status": "paired_checks_passed"
+    }
+  ],
+  "summary": {
+    "experiment": "EXP-003C",
+    "model": "Murugan compact shared-body Transformer D32 L4 H4 FF128",
+    "dataset": "WikiText-2 raw UTF-8 bytes",
+    "dataset_revision": "b08601e",
+    "tokenizer": "identity byte IDs 0..255",
+    "train_sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+    "validation_sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+    "validation_starts_sha256": "6d67a7a5868d50bb0a24255d999bd282ccc7b0ebe5c80c443c17999028bf2d66",
+    "git_commit": "d331751af192be7ef8783ab1d25a10cbb8ee4a90",
+    "source_sha256": "7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04",
+    "reference_commit": "fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df",
+    "dirty_source": true,
+    "per_seed": [
+      {
+        "seed": 1,
+        "CE_active": {
+          "P_T1": 0.006857062257495272,
+          "P_T4": -0.06371612043977848,
+          "interaction": -0.07057318269727375
+        },
+        "CE_raw": {
+          "P_T1": 0.0070324542519415445,
+          "P_T4": -0.06361545805469859,
+          "interaction": -0.07064791230664014
+        }
+      },
+      {
+        "seed": 2,
+        "CE_active": {
+          "P_T1": 0.04399414681165581,
+          "P_T4": 0.017405694186152232,
+          "interaction": -0.026588452625503578
+        },
+        "CE_raw": {
+          "P_T1": 0.044205522915035544,
+          "P_T4": 0.01755158591788586,
+          "interaction": -0.026653936997149685
+        }
+      },
+      {
+        "seed": 3,
+        "CE_active": {
+          "P_T1": 0.011413563020624906,
+          "P_T4": -0.04171517602139829,
+          "interaction": -0.0531287390420232
+        },
+        "CE_raw": {
+          "P_T1": 0.0117568859328685,
+          "P_T4": -0.04161187364354646,
+          "interaction": -0.05336875957641496
+        }
+      },
+      {
+        "seed": 4,
+        "CE_active": {
+          "P_T1": 0.043737146134503746,
+          "P_T4": 0.014955532334482768,
+          "interaction": -0.028781613800020978
+        },
+        "CE_raw": {
+          "P_T1": 0.04386105185614042,
+          "P_T4": 0.014994433981343036,
+          "interaction": -0.028866617874797385
+        }
+      },
+      {
+        "seed": 5,
+        "CE_active": {
+          "P_T1": 0.020918445610419667,
+          "P_T4": 0.07786917630468793,
+          "interaction": 0.05695073069426826
+        },
+        "CE_raw": {
+          "P_T1": 0.02109152148258886,
+          "P_T4": 0.07796024462786022,
+          "interaction": 0.05686872314527136
+        }
+      }
+    ],
+    "statistics": {
+      "CE_active": {
+        "mean_interaction": -0.02442425149411065,
+        "seed_sd": 0.048987828987268923,
+        "paired_seed_t95": [
+          -0.08525067509776535,
+          0.03640217210954406
+        ],
+        "dz": -0.49857795291271395,
+        "positive_seeds": 1
+      },
+      "CE_raw": {
+        "mean_interaction": -0.02453370072194616,
+        "seed_sd": 0.04900919636556212,
+        "paired_seed_t95": [
+          -0.08538665542996351,
+          0.0363192539860712
+        ],
+        "dz": -0.5005938179224165,
+        "positive_seeds": 1
+      }
+    },
+    "uncertainty": "two-sided Student t, df=4; paired training seeds; fixed validation sample",
+    "selected_lrs": {
+      "1": 0.01,
+      "4": 0.04
+    }
+  },
+  "data_manifest": {
+    "train": {
+      "bytes": 10938611,
+      "sha256": "2e07fe932e1b0d9384b9bb821c9ad5567cdb89b62399b8f55415b0d82c6a15a7",
+      "parquet_sha256": "e83889baabc497075506f91975be5fac0d45c5290b6b20582c8cd1e853d0c9f7"
+    },
+    "validation": {
+      "bytes": 1146708,
+      "sha256": "93abc2e0cd803097893a176fd0de13e75c77a1414c5e64af7bbcf705068938c5",
+      "parquet_sha256": "204929b7ff9d6184953f867dedb860e40aa69c078fc1e54b3baaa8fb28511c4c"
+    }
+  },
+  "environment": {
+    "torch": "2.8.0+cu128",
+    "device": "NVIDIA GeForce RTX 5090",
+    "cuda": "12.8"
+  },
+  "selected_lrs": {
+    "1": 0.01,
+    "4": 0.04
+  },
+  "audit": {
+    "fits_checked": 26,
+    "paired_initial_active_ce": true,
+    "paired_batch_hashes": true,
+    "fixed_validation_hash": true,
+    "endpoint_arrays_recomputed": true,
+    "control_only_lr_verified": true,
+    "paired_seed_interval_recomputed": true,
+    "total_runtime_seconds": 522.8511267192662
+  },
+  "decision": "No robust positive interaction; stop output-space branch under project stop rule; no equivalence or significant negative effect established",
+  "group_means": [
+    {
+      "depth": 1,
+      "output_size": 256,
+      "CE_active": 2.2303304862819515,
+      "CE_raw": 2.2303304862819515,
+      "m_dummy": 0.0
+    },
+    {
+      "depth": 1,
+      "output_size": 4096,
+      "CE_active": 2.2557145590488914,
+      "CE_raw": 2.2559199735696667,
+      "m_dummy": 0.00019253968046942655
+    },
+    {
+      "depth": 4,
+      "output_size": 256,
+      "CE_active": 2.4222111897130274,
+      "CE_raw": 2.4222111897130274,
+      "m_dummy": 0.0
+    },
+    {
+      "depth": 4,
+      "output_size": 4096,
+      "CE_active": 2.4231710109858566,
+      "CE_raw": 2.4232669762787964,
+      "m_dummy": 9.51822757619153e-05
+    }
+  ],
+  "secondary_status": "not triggered: primary mean interaction negative"
+}

@@ -134,3 +134,32 @@ Secondary slices: the highest loop-benefit quartile has G_nonlin 0.121332 at T1 
 Summed tuning/report runtime: 956.14 s (15.94 min), excluding input hash verification/loading and final analysis. Peak allocated GPU memory 1.49 GiB on RTX 5090 D, not reserved VRAM. Eleven unit tests and synthetic GPU integration passed before execution.
 
 Detailed provenance, config, all validation curves, gradient/norm/RMS diagnostics, selected LRs and per-run metrics: [EXP-001b run record](runs/EXP-001b-20260911.json). Source snapshot SHA-256 `f87539a12850f8db6aa69b3f017f93058c5143a894360146156128ca1e25bd58`, based on `43455b5ff0ce67cf0a9fa636e13bcc8b1e6231e1` plus archived uncommitted code. Per-token arrays and residual checkpoints remain at `/root/autodl-fs/depth-decoder-mismatch/outputs/EXP-001b-20260911/`, outside Git.
+
+## EXP-003A staged CPT pipeline — launched 2026-09-11
+
+No scientific result yet. Implementation and hardware preflight passed; the driver gates control-only LR selection and the 50M primary screen on fresh-data manifest validation and the six-arm 1M smoke (including masked-98K controls). Three unit tests and real-model paired checks passed after correcting clipping-norm numerical sensitivity. See [experiment card](../experiments/EXP-003A-ouro-output-vocab-cpt.md) and [launch record](runs/EXP-003A-20260911.json).
+
+User pause (2026-09-11): automatic training driver stopped before smoke. No smoke, LR-tuning or primary training run completed or remains active. Only engineering preflight has run; data preparation may continue. Await explicit resume before any training.
+
+## EXP-003C completed — 2026-09-11
+
+All six control-only tuning fits and twenty paired primary fits completed. Each fit used 600 steps and 1,228,800 supervised bytes. Selected LR: T1=.01, T4=.04; shared across output sizes. Five report seeds: 1..5. The endpoint is fixed-validation CE at step600, not a held-out test evaluation.
+
+| Depth | Output classes | Mean active CE | Mean raw CE | Mean dummy mass |
+|---|---:|---:|---:|---:|
+| 1 | 256 | 2.230330 | 2.230330 | 0 |
+| 1 | 4096 | 2.255715 | 2.255920 | 0.000193 |
+| 4 | 256 | 2.422211 | 2.422211 | 0 |
+| 4 | 4096 | 2.423171 | 2.423267 | 0.000095 |
+
+Output-inflation penalty P_active is +0.025384 at T1 and +0.000960 at T4. Primary I_active = **-0.024424**, paired-seed Student-t 95% CI **[-0.085251,+0.036402]**, df=4; d_z=-0.498578. Individual interactions: [-0.070573,-0.026588,-0.053129,-0.028782,+0.056951]. I_raw=-0.024534, CI [-0.085387,+0.036319].
+
+No robust positive active interaction was found. The negative point estimate and wide zero-crossing interval are not proof of equivalence or a statistically established negative effect. By the experiment's triage rule, stop the output-space branch; do not launch EXP-003A/B/004. The secondary per-arm LR check was not triggered because the primary mean was negative.
+
+T1 control mean 2.2303 is close to the public compact baseline 2.2591, with disclosed fixed-validation-sampling/CUDA differences. T4 is worse in absolute CE under the same 600-step budget; recurrence does not automatically improve this tiny model. This limits claims about mature recurrent models. LR differs by depth as preregistered, so the interaction is under this control-tuned training policy. Five seeds and a single fixed 16384-byte validation sample give limited precision; no test-set or natural-tokenizer generalization claim is made.
+
+Audit verified all 26 fixed budgets and endpoint checkpoints, exact paired initialization assertions, same batch hashes within seed, same validation sampling hash, control-only LR selection, per-position array means, loss decomposition and independently recomputed paired-seed interval. Parameter count is 69312 for V256 and 192192 for V4096, independent of T. T1 parameter/logit parity with the pinned public implementation and recurrence/masked-control tests passed before launch. Total fit runtime 522.85 seconds (8.71 min), excluding data setup and analysis.
+
+This is a minimal four-layer shared-body Transformer causal control, not a reproduction of Ouro pretraining. Positions are added once, all four body layers repeat T times, a final LayerNorm is applied once, and only final-loop raw CE is optimized. No adaptive exit or intermediate-loop objective is present.
+
+Detailed config, provenance, all histories and audit: [run record](runs/EXP-003C-20260911.json). Source SHA-256: `7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04`; base git `d331751af192be7ef8783ab1d25a10cbb8ee4a90`; upstream MIT reference `fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df`. Server artifacts: `/root/autodl-tmp/EXP-003C-20260911/`. No shared-storage allocation or Ouro training was performed.

@@ -224,4 +224,62 @@ It adds exactly one missing factor to an existing causal null: recurrent depth. 
 - that any effect at tiny scale survives long pretraining.
 
 ## Result
-Pending.
+Completed and audited; see detailed outcome below.
+
+## Frozen implementation — 2026-09-11
+
+Primary run EXP-003C-20260911 inherits public reference commit `fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df` (MIT license retained). Public model/feedback modules are vendored unchanged. Dedicated TinyRecurrent wrapper repeats the same four layers, adds absolute positions once, and normalizes once at the final exit. D=32, four heads, FFN=128, pre-LayerNorm, GELU, zero dropout, untied bias-free head. T1 has exactly 69312 parameters; V4096 has 192192 at both depths. Paired arms construct the same 256-class model first, then append independent normal(0,.02) rows, avoiding RNG perturbations of active/backbone initialization.
+
+The public output-vocab result selected LR .02 (the YAML default .002 was not the tuned result). Freeze control-only grid [.01,.02,.04], tuning seed 83, report seeds 1..5. Each tuning/report fit uses 600 steps, batch32, seq64, AdamW betas(.9,.95), eps1e-8, weight decay .1, clipping1.0, 60-step warmup/cosine exactly matching public scheduler. FP32 CUDA with TF32 off replaces public MPS. Validation endpoint remains step600; best-validation step is diagnostic only. No test split is accessed because the card defines a validation endpoint.
+
+WikiText-2 raw revision b08601e uses nonempty parquet text rows joined with newline, verified against both published byte-stream SHA-256 values. Train batches sample contiguous 65-byte spans using independent per-seed CPU generators, identically across all arms. As required by this card, fix eight validation batches of 32 spans (16384 supervised bytes) at all evaluations, using seed10001. This differs from the public runner's advancing validation generator and is disclosed for baseline comparability. Original train/validation split and byte-stream construction are retained; no new document deduplication or tokenizer changes.
+
+Preflight passed two focused tests: exact parameter/logit equality with public T1 model, paired tensors and logits across vocab arms, correct shared-layer call count, loss decomposition and zero masked-dummy gradients. Baseline CE near the reported 2.2591 is a plausibility check, not a target to tune toward; environment and fixed-validation-sample differences must be reported.
+
+Primary positive mean interaction triggers the card's secondary per-arm LR robustness: same seed83/grid/600-step endpoint on inflated arms, followed by paired report seeds with separately selected inflated LRs. Reuse identical already-completed primary fits when LR unchanged; never replace primary results. No expensive Ouro run is authorized by a positive tiny-model result.
+
+Config: configs/experiments/exp003c.yaml. Code: scripts/run_tiny_recurrent.py and src/ddm/tiny_recurrent.py. Outputs are on local server disk `/root/autodl-tmp/EXP-003C-20260911/` to preserve the user's shared-storage limit. Original EXP-003A remains paused/future work.
+
+## EXP-003C completed — 2026-09-11
+
+Six control-only tuning fits and twenty primary fits completed. T1 selected LR .01 and T4 .04, shared across V_out arms at each depth. All runs used the fixed 600-step endpoint and 1,228,800 supervised byte targets. Primary uncertainty is across paired training seeds, not tokens. Fixed validation sample: 16384 bytes in 256 windows; no test split was accessed.
+
+| T | V_out | Mean active CE | Mean raw CE | Mean dummy mass |
+|---|---:|---:|---:|---:|
+| 1 | 256 | 2.230330 | 2.230330 | 0.00000000 |
+| 1 | 4096 | 2.255715 | 2.255920 | 0.00019254 |
+| 4 | 256 | 2.422211 | 2.422211 | 0.00000000 |
+| 4 | 4096 | 2.423171 | 2.423267 | 0.00009518 |
+
+Mean inflation penalty: T1 +0.025384; T4 +0.000960 nats/byte. Primary interaction **I_active=-0.02442425**, paired-seed Student-t 95% interval **[-0.08525068,+0.03640217]**, df=4, d_z=-0.49858. Seed interactions (1..5): [-0.07057318,-0.02658845,-0.05312874,-0.02878161,+0.05695073]. Raw interaction -0.02453370, interval [-0.08538666,+0.03631925]. Dummy competition at the endpoint is tiny.
+
+**Decision:** no robust positive recurrent-depth × output-vocabulary interaction. The point estimate is negative, but the interval spans zero and nontrivial positive values; this is neither a significant negative effect nor an equivalence-to-zero result. Four of five seed effects are negative. Under the project's resource/stop rule, stop this output-space branch; do not run EXP-003A/B/004. Secondary per-arm tuning was not triggered because the primary mean was not positive.
+
+The T1/256 baseline CE 2.23033 is close in scale to the public result 2.2591; it is not an exact replication because this protocol freezes validation windows and uses CUDA instead of MPS. T4 is worse than T1 in both output arms under the 600-step budget; this may reflect recurrent optimization difficulty and must not be interpreted as a general result about mature recurrent LMs. T4's selected LR is the top of the preregistered grid (.04), so no global optimizer-optimality claim is made. Five seeds and a small fixed validation sample limit precision. Tiny-model results do not establish Ouro-scale or natural-tokenizer causal effects.
+
+Audit recomputed saved validation arrays, all four arm means, paired batch hashes, initial active-CE parity, fixed step-600 selection, supervised token budgets and the paired-seed interval. All 26 checkpoint files exist. Public byte-stream hashes match; T1 tensor/logit parity with pinned public code and the recurrent/masked/decomposition tests passed before training. Summed tuning/primary runtime 522.85 seconds on RTX 5090. No reruns or hyperparameter changes were made after outcomes.
+
+Detailed configuration, provenance, all curves, per-run metrics and audit: [run record](../research/runs/EXP-003C-20260911.json). Artifacts remain at `/root/autodl-tmp/EXP-003C-20260911/`; shared storage was not increased.
+
+## EXP-003C completed — 2026-09-11
+
+All six control-only tuning fits and twenty paired primary fits completed. Each fit used 600 steps and 1,228,800 supervised bytes. Selected LR: T1=.01, T4=.04; shared across output sizes. Five report seeds: 1..5. The endpoint is fixed-validation CE at step600, not a held-out test evaluation.
+
+| Depth | Output classes | Mean active CE | Mean raw CE | Mean dummy mass |
+|---|---:|---:|---:|---:|
+| 1 | 256 | 2.230330 | 2.230330 | 0 |
+| 1 | 4096 | 2.255715 | 2.255920 | 0.000193 |
+| 4 | 256 | 2.422211 | 2.422211 | 0 |
+| 4 | 4096 | 2.423171 | 2.423267 | 0.000095 |
+
+Output-inflation penalty P_active is +0.025384 at T1 and +0.000960 at T4. Primary I_active = **-0.024424**, paired-seed Student-t 95% CI **[-0.085251,+0.036402]**, df=4; d_z=-0.498578. Individual interactions: [-0.070573,-0.026588,-0.053129,-0.028782,+0.056951]. I_raw=-0.024534, CI [-0.085387,+0.036319].
+
+No robust positive active interaction was found. The negative point estimate and wide zero-crossing interval are not proof of equivalence or a statistically established negative effect. By the experiment's triage rule, stop the output-space branch; do not launch EXP-003A/B/004. The secondary per-arm LR check was not triggered because the primary mean was negative.
+
+T1 control mean 2.2303 is close to the public compact baseline 2.2591, with disclosed fixed-validation-sampling/CUDA differences. T4 is worse in absolute CE under the same 600-step budget; recurrence does not automatically improve this tiny model. This limits claims about mature recurrent models. LR differs by depth as preregistered, so the interaction is under this control-tuned training policy. Five seeds and a single fixed 16384-byte validation sample give limited precision; no test-set or natural-tokenizer generalization claim is made.
+
+Audit verified all 26 fixed budgets and endpoint checkpoints, exact paired initialization assertions, same batch hashes within seed, same validation sampling hash, control-only LR selection, per-position array means, loss decomposition and independently recomputed paired-seed interval. Parameter count is 69312 for V256 and 192192 for V4096, independent of T. T1 parameter/logit parity with the pinned public implementation and recurrence/masked-control tests passed before launch. Total fit runtime 522.85 seconds (8.71 min), excluding data setup and analysis.
+
+This is a minimal four-layer shared-body Transformer causal control, not a reproduction of Ouro pretraining. Positions are added once, all four body layers repeat T times, a final LayerNorm is applied once, and only final-loop raw CE is optimized. No adaptive exit or intermediate-loop objective is present.
+
+Detailed config, provenance, all histories and audit: [run record](../research/runs/EXP-003C-20260911.json). Source SHA-256: `7f7b43a5988a619c021929bb26beb7e6a463efc15ec321fcc5f089ab2c736a04`; base git `d331751af192be7ef8783ab1d25a10cbb8ee4a90`; upstream MIT reference `fa8b2c5ba73e0350c9a34fbfcd95a582c0f798df`. Server artifacts: `/root/autodl-tmp/EXP-003C-20260911/`. No shared-storage allocation or Ouro training was performed.
