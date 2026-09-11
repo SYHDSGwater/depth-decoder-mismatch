@@ -3,7 +3,7 @@
 > Keep <= ~100 lines. This is the first file an agent reads.
 
 ## Current research question
-Does increasing recurrent/looped depth make a fixed-width linear-softmax decoder an increasingly strong *marginal* bottleneck, and does pure output-space inflation causally amplify that problem?
+Does increasing recurrent/looped depth make a fixed-width linear-softmax decoder an increasingly strong *marginal* bottleneck, and does pure output-space inflation causally create a depth-dependent optimization penalty even when deeper states remain linearly readable?
 
 ## Primary metrics
 Phase A decoder-family diagnostic:
@@ -12,86 +12,72 @@ Phase A decoder-family diagnostic:
 EXP-001b frozen-head mechanistic audit:
 `G_nonlin(T) = CE_linear_residual(T) - CE_nonlinear_residual(T)` with the native LM head frozen in both arms.
 
-Phase B pure-vocab causal test:
+Phase B output-space causal test:
 `I_active = [CE_active(T_hi,V_hi)-CE_active(T_hi,V_base)] - [CE_active(T_lo,V_hi)-CE_active(T_lo,V_base)]`.
 
+## Current evidence
+- EXP-001 pilot/1M show negative depth slope of rich-vs-linear regret, concentrated in T1→T2.
+- EXP-001b freezes the native LM head and still finds `G_nonlin` collapsing with depth: T1=0.054595, T2=0.002830, T3≈0, T4=0.
+- Therefore current Ouro evidence does **not** support the forward-expressivity version of DDM; deeper native states do not increasingly require a richer decoder.
+- The remaining small-vocab hypothesis is now framed as an output-space optimization/competition question, tested separately in EXP-003A.
+
 ## Competing hypotheses
-- **H1 DDM:** `dR_head/dT > 0`; additionally, pure output-vocab inflation should hurt more at larger T (`I_active > 0`).
-- **H2 Depth-as-linearization / decoder compensation:** `dR_head/dT < 0`; deeper recurrence may reduce or absorb decoder burden.
-- **H0:** no material decoder-depth or depth×output-vocab interaction.
+- **H1-forward DDM:** deeper states become increasingly under-exploited by a linear decoder. Current Ouro evidence does not support this.
+- **H2 depth-as-linearization / decoder alignment:** recurrent computation reduces marginal nonlinear decoder gain. Current Ouro evidence supports this direction, pending independent/cross-architecture replication.
+- **H3 output-space optimization interaction:** larger `V_out` causes greater collateral active-token learning damage at larger T even if forward decoder expressivity is not limiting; predicts `I_active > 0` in EXP-003A.
+- **H0-output:** no material depth × output-vocabulary interaction after removing mechanical dummy competition.
 
 ## Current baselines
 ### EXP-001 / EXP-001b
-- Primary model: `ByteDance/Ouro-1.4B`
-- Native loop depths: `T=1..4`
-- Hidden size: 2048
-- Vocab size: 49,152
-- EXP-001 probe baseline: refit bias-free linear decoder initialized from native LM head.
-- EXP-001 rich probe: residual nonlinear decoder `Wh + U GELU(Ah)`, zero-initialized residual output.
-- EXP-001b freezes `W_native` and compares matched linear vs nonlinear residual adapters on the same 1M cached hidden dataset.
+- model: `ByteDance/Ouro-1.4B`;
+- native T=1..4, D=2048, V=49,152;
+- EXP-001b primary expressivity endpoint: matched linear-vs-nonlinear residual gain with `W_native` frozen.
 
-### EXP-003
-- Controlled small Ouro-style LoopLM trained from scratch.
-- One fixed BPE tokenizer with `V_base=16,384`.
-- Input vocabulary remains 16,384 in every arm.
-- Output-only vocabulary levels: 16,384 (control), 49,152 (primary inflated), 131,072 (stress).
-- Recurrent depth: T=1 and T=4 primary; T=2 secondary.
-- Extra output classes are trainable, enter the softmax denominator, and are never targets.
+### EXP-003A — primary Phase-B screen
+- same pinned Ouro-1.4B checkpoint/tokenizer as EXP-001;
+- tokenizer/input vocabulary fixed at 49,152;
+- output vocabulary: 49,152 control vs 98,304 output-only inflation;
+- dummy rows are trainable and never inputs/targets;
+- primary recurrent depths: T=1 vs T=4, forced fixed depth;
+- one final-step raw-softmax LM loss per token in every arm;
+- all ordinary model parameters plus active/dummy output rows update during continued pretraining;
+- primary screen budget: 50M supervised tokens/arm;
+- primary endpoint: `I_active(50M)`; validation trajectory `I_active(s)` distinguishes transient vs persistent cost.
+
+### EXP-003B — from-scratch replication
+Run only if EXP-003A shows a stable nonzero interaction worth testing outside pretrained-checkpoint adaptation.
+
+### EXP-004 — natural tokenizer study
+Changes tokenizer itself; separate because sequence length, token frequency and compositional structure also change.
 
 ## Current experiment order
-1. `EXP-001`: Ouro native-depth Head Regret sweep — smoke/pilot/1M completed, non-confirmatory.
-2. `EXP-001b`: frozen-native-head residual audit — primary-width run completed/audited; post-hoc diagnostic to separate real nonlinearity gain from full-head refit drift.
-3. `EXP-002`: Nanbeige native-loop replication.
-4. `EXP-003`: direct output-vocabulary inflation × recurrent-depth causal test.
-5. `EXP-004`: natural 16K-vs-larger tokenizer × depth study, only after the isolated output-space test.
+1. EXP-001 — Ouro Head Regret sweep: completed, non-confirmatory.
+2. EXP-001b — frozen-native-head audit: completed, post-hoc mechanistic diagnostic.
+3. EXP-003A — Ouro continued-pretraining output-vocab intervention: **next primary experiment**.
+4. EXP-002 — Nanbeige cross-architecture decoder-gain replication.
+5. EXP-003B — small from-scratch output-vocab replication if EXP-003A positive.
+6. EXP-004 — natural tokenizer-vocab experiment if isolated output-space evidence warrants it.
 
-## Supported facts / guardrails
-- A standard linear LM head constrains cross-context logits to rank <= hidden width.
-- LOTUS falsifies the strong claim that deeper latent states must become unreadable by the base LM head; target decoder-family regret instead.
-- Large null-space gradient norm alone is not evidence of harmful optimization; Murugan (2026) is the required causal counterpoint.
-- Changing a natural tokenizer introduces sequence-length, token-frequency and compositional confounds.
-- Never-target output classes isolate output dimensionality/competition while leaving tokenizer and targets fixed.
-- Raw CE under output inflation includes a mechanical dummy-class denominator penalty; EXP-003 therefore decomposes it into `CE_active` and `CE_competition`.
-- EXP-001 pilot and 1M show nearly all rich-vs-linear gain at T=1 and approximately zero gain at T=2..4, but all deep full-refit probes selected step 1 and even refit linear slightly underperformed the untouched native head.
-- EXP-001b recovers positive nonlinear gain at T2, but not T3/T4. The overall slope remains negative; W drift alone is not causally isolated.
+## EXP-003A protocol invariants
+- same tokenizer/token IDs/targets/input embeddings across V_out arms;
+- same starting backbone and active LM-head rows within paired arms;
+- 98K arm adds exactly 49,152 never-target output rows;
+- primary dummy initialization uses one-to-one clones of active rows, giving step-0 `m_dummy=0.5`, `CE_competition=log 2`, and identical `CE_active` across paired V arms;
+- fixed recurrent T; adaptive exit disabled;
+- one final-step LM loss in both T=1 and T=4 arms;
+- raw full-softmax CE is used for training; active-renormalized CE is evaluation only;
+- backbone and active rows are trainable; freezing them would make `CE_active` unable to reveal collateral learning damage;
+- LR selected from 49K control only within each T, then shared with 98K arm;
+- same training documents, token budget and paired batch order across all arms;
+- fresh data relative to EXP-001 preferred;
+- test set evaluated only at the fixed 50M endpoint;
+- document-level paired bootstrap; tokens are not IID units.
 
-## Open uncertainties
-- Does the EXP-001b T2 gain and T3/T4 null survive width robustness and independent replication?
-- Does the sign replicate on Nanbeige T=1→2?
-- Does output-only vocabulary inflation produce `I_active > 0`, i.e. active-token modeling damage that grows with recurrent depth?
-- Or is any raw-loss penalty entirely explained by dummy-class probability mass (`CE_competition`)?
-- If EXP-003 is positive, does the mechanism survive a natural tokenizer change in EXP-004?
-
-## Protocol invariants
-### EXP-001b
-- reuse the exact cached EXP-001 1M hidden states, labels, positions and document split;
-- `W_native` frozen exactly in every trainable arm;
-- matched residual width/parameterization for linear vs nonlinear residual controls;
-- step 0 participates in validation model selection;
-- dense early validation at 0,1,2,5,10,20,50,100,...;
-- validation-only LR selection; test evaluated once after selection;
-- primary expressivity evidence is `G_nonlin`, not gain over native alone;
-- EXP-001b is post-hoc and not an independent confirmation.
-
-### EXP-003
-- same tokenizer, token IDs, targets, documents and batch order across `V_out` arms;
-- same input embedding vocabulary across arms;
-- output-only extra classes never appear as targets;
-- paired initialization seeds and matched backbone/active output rows;
-- raw CE alone is not sufficient for the strong bottleneck claim; `CE_active` interaction is primary.
+## Strong evidence standard for EXP-003A
+- `I_raw > 0` alone = competition/suppression cost only;
+- persistent `I_active > 0` through the 50M endpoint = strong evidence for a depth-dependent output-space optimization penalty in pretrained Ouro;
+- early positive `I_active` that decays to zero = transient adaptation slowdown;
+- null `I_active` substantially weakens a pure output-class-count explanation for small vocab in Ouro.
 
 ## Next action
-EXP-001b primary width is complete. Preserve the T2 positive gain and T3/T4 null; independent replication and secondary-width robustness remain pending. In parallel, EXP-003 decoder-only bridge remains useful for estimating output-vocab inflation effect sizes.
-
-## EXP-001 completed runs (2026-09-11)
-- Smoke: 10240 targets, 24 fits, 50-step budget; slope +0.00009894, document interval [-0.00344752,+0.00366996]; plumbing passed, no hypothesis conclusion.
-- Pilot: 102400 targets, 24 fits; slope -0.02479354, interval [-0.02685600,-0.02270657]; observed direction favors H2 under the fixed recipe.
-- 1M: 800000/100000/100000 targets, 31250 documents, 24 fits; slope -0.02339529, interval [-0.02406723,-0.02274578]; observed direction favors H2.
-- Pilot and 1M: T1 selected step 100, T2..4 step 1; optimized family optima are not established. Rich held-out CE improves with depth.
-- 1M includes all pilot/smoke records unchanged; all stages are non-confirmatory and independent confirmation remains pending.
-
-## Completed EXP-001b run
-- Primary width 512; 24 validation-only tuning fits then 24 report fits, fixed 2000 steps and step-zero selection.
-- Source/config/launch record: research/runs/EXP-001b-20260911.json; all 11 unit tests and synthetic GPU integration passed.
-- G_nonlin T1..4: [0.054595, 0.002830, -0.000002, 0]; slope -0.016662, document interval [-0.017328,-0.015993].
-- T2 gain is positive in every seed; T3/T4 near zero. T1 selects step 2000; all T4 report fits select step 0. Non-confirmatory; width robustness pending.
+Implement and smoke-test EXP-003A, including the masked-98K sanity control and exact step-zero loss decomposition, before spending compute on the 50M × 4-arm × 3-seed screen.
