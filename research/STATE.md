@@ -3,51 +3,71 @@
 > Keep <= ~100 lines. This is the first file an agent reads.
 
 ## Current research question
-Does increasing recurrent/looped depth make a fixed-width linear-softmax decoder an increasingly strong *marginal* bottleneck, measurable as rising held-out decoder-family regret on the same frozen hidden states?
+Does increasing recurrent/looped depth make a fixed-width linear-softmax decoder an increasingly strong *marginal* bottleneck, and does pure output-space inflation causally amplify that problem?
 
-## Primary metric
+## Primary metrics
+Phase A decoder-family diagnostic:
 `R_head(T) = L_linear_refit*(T) - L_rich*(T)` on paired held-out examples.
 
-Confirmatory statistic for Phase A: slope / paired depth contrast of `R_head(T)` within one checkpoint's native loop range.
+Phase B pure-vocab causal test:
+`I_active = [CE_active(T_hi,V_hi)-CE_active(T_hi,V_base)] - [CE_active(T_lo,V_hi)-CE_active(T_lo,V_base)]`.
 
 ## Competing hypotheses
-- **H1 DDM:** `dR/dT > 0`.
-- **H2 Depth-as-linearization / decoder compensation:** `dR/dT < 0`.
-- **H0:** `dR/dT ≈ 0`.
+- **H1 DDM:** `dR_head/dT > 0`; additionally, pure output-vocab inflation should hurt more at larger T (`I_active > 0`).
+- **H2 Depth-as-linearization / decoder compensation:** `dR_head/dT < 0`; deeper recurrence may reduce or absorb decoder burden.
+- **H0:** no material decoder-depth or depth×output-vocab interaction.
 
-## Current baseline
+## Current baselines
+### EXP-001
 - Primary model: `ByteDance/Ouro-1.4B`
-- Native loop depths: `T=1..4` extracted from one max-depth forward where possible.
+- Native loop depths: `T=1..4`
 - Hidden size: 2048
 - Vocab size: 49,152
 - Probe baseline: refit bias-free linear decoder initialized from native LM head.
 - Rich probe: residual nonlinear decoder `Wh + U GELU(Ah)`, zero-initialized residual output.
-- Reproduction status: not started.
 
-## Current experiment
-- `EXP-001`: Ouro native-depth Head Regret sweep.
-- Purpose: decide the sign of `dR/dT` before doing any vocabulary-causal study.
+### EXP-003
+- Controlled small Ouro-style LoopLM trained from scratch.
+- One fixed BPE tokenizer with `V_base=16,384`.
+- Input vocabulary remains 16,384 in every arm.
+- Output-only vocabulary levels: 16,384 (control), 49,152 (primary inflated), 131,072 (stress).
+- Recurrent depth: T=1 and T=4 primary; T=2 secondary.
+- Extra output classes are trainable, enter the softmax denominator, and are never targets.
 
-## Supported facts
+## Current experiment order
+1. `EXP-001`: Ouro native-depth Head Regret sweep.
+2. `EXP-002`: Nanbeige native-loop replication.
+3. `EXP-003`: direct output-vocabulary inflation × recurrent-depth causal test.
+4. `EXP-004`: natural 16K-vs-larger tokenizer × depth study, only after the isolated output-space test.
+
+## Supported facts / guardrails
 - A standard linear LM head constrains cross-context logits to rank <= hidden width.
-- Ouro exposes recurrent computation with a native 4-step depth range and per-step hidden states.
-- Nanbeige4.2-3B uses 22 shared layers for 2 loops, with V=166,144 and D=3072.
-- LOTUS falsifies the strong claim that deeper latent states must become unreadable by the base LM head; this project therefore targets decoder-family *regret*, not verbalizability.
-- Large null-space gradient norm alone is not sufficient evidence of harmful optimization; the 2026 causal test is a required counterpoint.
+- LOTUS falsifies the strong claim that deeper latent states must become unreadable by the base LM head; target decoder-family regret instead.
+- Large null-space gradient norm alone is not evidence of harmful optimization; Murugan (2026) is the required causal counterpoint.
+- Changing a natural tokenizer introduces sequence-length, token-frequency and compositional confounds.
+- Never-target output classes isolate output dimensionality/competition while leaving tokenizer and targets fixed.
+- Raw CE under output inflation includes a mechanical dummy-class denominator penalty; EXP-003 therefore decomposes it into `CE_active` and `CE_competition`.
 
 ## Open uncertainties
-- Does probe regret monotonically increase, decrease, or remain flat over Ouro T=1..4?
-- How sensitive is the sign to rich-head width, probe data size and early stopping?
-- Is any effect reproduced on Nanbeige T=1->2?
-- Does a matched tokenizer-vocab × depth experiment show a positive interaction in BPB?
+- Does `R_head(T)` increase, decrease, or remain flat over Ouro T=1..4?
+- Does the sign replicate on Nanbeige T=1→2?
+- Does output-only vocabulary inflation produce `I_active > 0`, i.e. active-token modeling damage that grows with recurrent depth?
+- Or is any raw-loss penalty entirely explained by dummy-class probability mass (`CE_competition`)?
+- If EXP-003 is positive, does the mechanism survive a natural tokenizer change in EXP-004?
 
-## Protocol invariants for EXP-001
-- one checkpoint and tokenizer revision across all depths;
-- same raw examples and sampled token positions at every depth;
-- same train/val/test split for all heads and depths;
-- same optimizer, LR search policy, step budget and early stopping across head families;
-- no task-specific finetuning of the backbone;
-- only native trained loop depths count as confirmatory.
+## Protocol invariants
+### EXP-001
+- one checkpoint/tokenizer revision across depths;
+- same examples and target positions at every T;
+- same train/val/test split and probe optimization policy;
+- only native trained loop depths are confirmatory.
+
+### EXP-003
+- same tokenizer, token IDs, targets, documents and batch order across `V_out` arms;
+- same input embedding vocabulary across arms;
+- output-only extra classes never appear as targets;
+- paired initialization seeds and matched backbone/active output rows;
+- raw CE alone is not sufficient for the strong bottleneck claim; `CE_active` interaction is primary.
 
 ## Next action
-Run a small Ouro extraction smoke test (T=1..4), verify hidden/label alignment and measure native-head CE at each depth before training probes.
+Complete EXP-001 smoke/pilot first. In parallel, implement an EXP-003 decoder-only bridge on frozen Ouro hidden states to validate the output-inflation decomposition and estimate useful V_out levels before committing to from-scratch training.
