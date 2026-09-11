@@ -1,0 +1,2622 @@
+{
+  "run_id": "EXP-001-pilot-20260911-r2",
+  "review_date": "2026-09-11",
+  "summary": {
+    "experiment_id": "EXP-001",
+    "stage": "pilot",
+    "confirmatory": false,
+    "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+    "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+    "model": "ByteDance/Ouro-1.4B",
+    "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+    "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+    "dataset": "HuggingFaceFW/fineweb-edu",
+    "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+    "dataset_config": "sample-10BT",
+    "validity_status": "pilot_completed",
+    "scope": "staged exploratory estimate; convergence and confirmatory replication remain separate",
+    "table": [
+      {
+        "depth": 1,
+        "native_ce": 3.7242365588077675,
+        "linear_ce": 3.6471804777781167,
+        "rich_ce": 3.5646276473999023,
+        "regret": 0.08255299342888703
+      },
+      {
+        "depth": 2,
+        "native_ce": 2.5043939180936783,
+        "linear_ce": 2.504638671875,
+        "rich_ce": 2.50469962755839,
+        "regret": -6.088203858813181e-05
+      },
+      {
+        "depth": 3,
+        "native_ce": 2.286927493360328,
+        "linear_ce": 2.287355581919352,
+        "rich_ce": 2.2874415715535483,
+        "regret": -8.615269922114996e-05
+      },
+      {
+        "depth": 4,
+        "native_ce": 2.263910520878345,
+        "linear_ce": 2.264317433039347,
+        "rich_ce": 2.2644011974334717,
+        "regret": -8.37144473018488e-05
+      }
+    ],
+    "slope": -0.024793539428919965,
+    "delta_regret": -0.08263670787618888,
+    "document_bootstrap_slope_95_percentile": [
+      -0.026856004136204696,
+      -0.02270657082429526
+    ],
+    "document_bootstrap_delta_95_percentile": [
+      -0.08951288403684576,
+      -0.07567962848770447
+    ],
+    "per_seed_statistics": [
+      {
+        "seed": 11,
+        "regret": [
+          0.08225353155246835,
+          -6.245241017230896e-05,
+          -9.128313406030486e-05,
+          -8.962045580167555e-05
+        ],
+        "slope": -0.024705828674869812,
+        "delta_regret": -0.08234315200827003
+      },
+      {
+        "seed": 29,
+        "regret": [
+          0.07925419703570089,
+          -7.730700864883034e-06,
+          -3.320190981987991e-05,
+          -2.7370331382048362e-05
+        ],
+        "slope": -0.02378701733102038,
+        "delta_regret": -0.07928156736708293
+      },
+      {
+        "seed": 47,
+        "regret": [
+          0.08615125169849183,
+          -0.0001124630047272035,
+          -0.00013397305378326507,
+          -0.00013415255472182253
+        ],
+        "slope": -0.025887772280869702,
+        "delta_regret": -0.08628540425321365
+      }
+    ],
+    "uncertainty_scope": "document resampling conditional on these three probe seeds; non-confirmatory",
+    "test_document_count": 320,
+    "secondary_slices": {
+      "difficulty": [
+        {
+          "quartile": 1,
+          "count": 2560,
+          "mean_regret": [
+            0.017311341440085618,
+            0.00011085102687561739,
+            0.00010595830102033698,
+            0.0001076091803966504
+          ]
+        },
+        {
+          "quartile": 2,
+          "count": 2560,
+          "mean_regret": [
+            0.08030489082157136,
+            0.0002992099206911308,
+            0.00025600588611448855,
+            0.0002468686278964096
+          ]
+        },
+        {
+          "quartile": 3,
+          "count": 2560,
+          "mean_regret": [
+            0.20111175544249554,
+            4.1883917934152455e-05,
+            2.20469340130573e-05,
+            2.1028280684731757e-05
+          ]
+        },
+        {
+          "quartile": 4,
+          "count": 2560,
+          "mean_regret": [
+            0.03148398601139563,
+            -0.0006954730198534287,
+            -0.0007286219180324829,
+            -0.0007103638781851862
+          ]
+        }
+      ],
+      "loop_benefit": [
+        {
+          "quartile": 1,
+          "count": 2560,
+          "mean_regret": [
+            0.029949299881574354,
+            -0.00014196433531061793,
+            -0.00013042987301143224,
+            -0.00012527244264456732
+          ]
+        },
+        {
+          "quartile": 2,
+          "count": 2560,
+          "mean_regret": [
+            0.03729565172916412,
+            -6.682921811792161e-05,
+            -7.720652985578148e-05,
+            -7.177867231575877e-05
+          ]
+        },
+        {
+          "quartile": 3,
+          "count": 2560,
+          "mean_regret": [
+            0.098123458951401,
+            1.4970858023843772e-05,
+            -1.801961959415617e-05,
+            -2.637555816041483e-05
+          ]
+        },
+        {
+          "quartile": 4,
+          "count": 2560,
+          "mean_regret": [
+            0.16484356315340826,
+            -4.970545894783144e-05,
+            -0.00011895477442323005,
+            -0.00011143111608665397
+          ]
+        }
+      ]
+    },
+    "seeds": [
+      11,
+      29,
+      47
+    ],
+    "paired_data_verified": true,
+    "extra_capacity_verified": true
+  },
+  "config": {
+    "experiment": "EXP-001",
+    "stage": "pilot",
+    "model": {
+      "name": "ByteDance/Ouro-1.4B",
+      "revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "weight_sha256": "58872a72616c736595b8b7662079c5b12c5a162ec16eae94f21c348dfa9885af",
+      "dtype": "bfloat16",
+      "attention": "sdpa",
+      "native_depths": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "data": {
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_config": "sample-10BT",
+      "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "source_file": "sample/10BT/000_00000.parquet",
+      "seq_len": 1024,
+      "min_position": 128,
+      "positions_per_window": 32,
+      "target_count": 102400,
+      "seed": 20260911,
+      "window_policy": "first-full-window-per-document",
+      "split_policy": "document-sha256-80-10-10",
+      "deduplicate_text": true
+    },
+    "training": {
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "max_steps": 5000,
+      "eval_every": 100,
+      "patience_evals": 8,
+      "seeds": [
+        11,
+        29,
+        47
+      ],
+      "residual_width": 512,
+      "dtype": "float32",
+      "schedule": "constant",
+      "save_head_checkpoints": true
+    },
+    "analysis": {
+      "bootstrap_replicates": 2000,
+      "bootstrap_seed": 20260911,
+      "confirmatory": false
+    }
+  },
+  "sampling": {
+    "experiment_id": "EXP-001",
+    "stage": "pilot",
+    "confirmatory": false,
+    "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+    "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+    "model": "ByteDance/Ouro-1.4B",
+    "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+    "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+    "dataset": "HuggingFaceFW/fineweb-edu",
+    "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+    "dataset_config": "sample-10BT",
+    "config": {
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_config": "sample-10BT",
+      "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "source_file": "sample/10BT/000_00000.parquet",
+      "seq_len": 1024,
+      "min_position": 128,
+      "positions_per_window": 32,
+      "target_count": 102400,
+      "seed": 20260911,
+      "window_policy": "first-full-window-per-document",
+      "split_policy": "document-sha256-80-10-10",
+      "deduplicate_text": true
+    },
+    "document_counts": {
+      "train": 2560,
+      "validation": 320,
+      "test": 320
+    },
+    "sample_counts": {
+      "train": 81920,
+      "validation": 10240,
+      "test": 10240
+    },
+    "windows_sha256": "dbfa3730a1f80cfee8c46beb8b2bc25ddbcefe3bf4c72c6436eb799145f2fdf1",
+    "duplicate_content_skipped": 1,
+    "source_url": "https://hf-mirror.com/datasets/HuggingFaceFW/fineweb-edu/resolve/87f09149ef4734204d70ed1d046ddc9ca3f2b8f9/sample/10BT/000_00000.parquet",
+    "documents_disjoint": true,
+    "text_hashes_disjoint": true
+  },
+  "extraction": {
+    "experiment_id": "EXP-001",
+    "stage": "pilot",
+    "confirmatory": false,
+    "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+    "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+    "model": "ByteDance/Ouro-1.4B",
+    "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+    "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+    "dataset": "HuggingFaceFW/fineweb-edu",
+    "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+    "dataset_config": "sample-10BT",
+    "loop_depth": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "sample_count": 102400,
+    "split_counts": {
+      "train": 81920,
+      "validation": 10240,
+      "test": 10240
+    },
+    "dtype": "bfloat16",
+    "hidden_storage_dtype": "bfloat16",
+    "device": "NVIDIA GeForce RTX 5090",
+    "initialization": "frozen pretrained backbone",
+    "optimizer": null,
+    "lr": null,
+    "steps": 0,
+    "head_family": "native_linear",
+    "head_parameter_count": 100663296,
+    "seed": 20260911,
+    "best_validation_loss": null,
+    "selected_checkpoint_step": null,
+    "test_loss": null,
+    "runtime_seconds": 305.8486892879009,
+    "peak_memory_bytes": 3024133632,
+    "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+    "windows_sha256": "dbfa3730a1f80cfee8c46beb8b2bc25ddbcefe3bf4c72c6436eb799145f2fdf1",
+    "native_logits_max_abs_diff": {
+      "1": 0.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0
+    },
+    "validity_status": "pilot_extraction_passed"
+  },
+  "environment": {
+    "torch": "2.8.0+cu128",
+    "transformers": "4.55.4",
+    "datasets": "4.8.5",
+    "huggingface-hub": "0.36.2",
+    "tokenizers": "0.21.4",
+    "numpy": "2.3.2",
+    "safetensors": "0.8.0"
+  },
+  "probe_runs": [
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 1,
+      "seed": 11,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 900,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 3.6020750999450684,
+      "selected_checkpoint_step": 100,
+      "test_loss": 3.6431491374969482,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 9.062977161258459,
+      "peak_memory_bytes": 2433025024,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T1-linear_refit-seed11.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 3.684828996658325,
+          "train_batch_loss": 3.860342502593994
+        },
+        {
+          "step": 100,
+          "validation_loss": 3.6020750999450684,
+          "train_batch_loss": 3.5511679649353027
+        },
+        {
+          "step": 200,
+          "validation_loss": 3.641101360321045,
+          "train_batch_loss": 3.641724109649658
+        },
+        {
+          "step": 300,
+          "validation_loss": 3.6794981956481934,
+          "train_batch_loss": 3.51869797706604
+        },
+        {
+          "step": 400,
+          "validation_loss": 3.7153313159942627,
+          "train_batch_loss": 3.316246747970581
+        },
+        {
+          "step": 500,
+          "validation_loss": 3.7400386333465576,
+          "train_batch_loss": 2.761033535003662
+        },
+        {
+          "step": 600,
+          "validation_loss": 3.7630438804626465,
+          "train_batch_loss": 2.9087026119232178
+        },
+        {
+          "step": 700,
+          "validation_loss": 3.7863564491271973,
+          "train_batch_loss": 2.7587246894836426
+        },
+        {
+          "step": 800,
+          "validation_loss": 3.8072516918182373,
+          "train_batch_loss": 2.804643154144287
+        },
+        {
+          "step": 900,
+          "validation_loss": 3.8266258239746094,
+          "train_batch_loss": 2.531161308288574
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 1,
+      "seed": 11,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 900,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 3.5259437561035156,
+      "selected_checkpoint_step": 100,
+      "test_loss": 3.5608959197998047,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 10.867045681923628,
+      "peak_memory_bytes": 3062182912,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T1-residual_rich-seed11.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 3.6845200061798096,
+          "train_batch_loss": 3.860342502593994
+        },
+        {
+          "step": 100,
+          "validation_loss": 3.5259437561035156,
+          "train_batch_loss": 3.4345791339874268
+        },
+        {
+          "step": 200,
+          "validation_loss": 3.5554022789001465,
+          "train_batch_loss": 3.5248215198516846
+        },
+        {
+          "step": 300,
+          "validation_loss": 3.6031296253204346,
+          "train_batch_loss": 3.416985034942627
+        },
+        {
+          "step": 400,
+          "validation_loss": 3.6325440406799316,
+          "train_batch_loss": 3.207594394683838
+        },
+        {
+          "step": 500,
+          "validation_loss": 3.6573314666748047,
+          "train_batch_loss": 2.6804823875427246
+        },
+        {
+          "step": 600,
+          "validation_loss": 3.673292636871338,
+          "train_batch_loss": 2.780940055847168
+        },
+        {
+          "step": 700,
+          "validation_loss": 3.6919846534729004,
+          "train_batch_loss": 2.6483025550842285
+        },
+        {
+          "step": 800,
+          "validation_loss": 3.718188524246216,
+          "train_batch_loss": 2.6960067749023438
+        },
+        {
+          "step": 900,
+          "validation_loss": 3.7320690155029297,
+          "train_batch_loss": 2.388363838195801
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 1,
+      "seed": 29,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 900,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 3.609581470489502,
+      "selected_checkpoint_step": 100,
+      "test_loss": 3.6479954719543457,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 8.327263694256544,
+      "peak_memory_bytes": 2433025024,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T1-linear_refit-seed29.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 3.6853606700897217,
+          "train_batch_loss": 3.728663206100464
+        },
+        {
+          "step": 100,
+          "validation_loss": 3.609581470489502,
+          "train_batch_loss": 3.4393534660339355
+        },
+        {
+          "step": 200,
+          "validation_loss": 3.6479697227478027,
+          "train_batch_loss": 3.409191131591797
+        },
+        {
+          "step": 300,
+          "validation_loss": 3.688272476196289,
+          "train_batch_loss": 3.0107502937316895
+        },
+        {
+          "step": 400,
+          "validation_loss": 3.723003387451172,
+          "train_batch_loss": 3.2595090866088867
+        },
+        {
+          "step": 500,
+          "validation_loss": 3.7517261505126953,
+          "train_batch_loss": 2.969266414642334
+        },
+        {
+          "step": 600,
+          "validation_loss": 3.7765820026397705,
+          "train_batch_loss": 2.8732364177703857
+        },
+        {
+          "step": 700,
+          "validation_loss": 3.7985751628875732,
+          "train_batch_loss": 2.999678611755371
+        },
+        {
+          "step": 800,
+          "validation_loss": 3.819478988647461,
+          "train_batch_loss": 3.0072808265686035
+        },
+        {
+          "step": 900,
+          "validation_loss": 3.8348286151885986,
+          "train_batch_loss": 2.539823532104492
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 1,
+      "seed": 29,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 900,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 3.5348029136657715,
+      "selected_checkpoint_step": 100,
+      "test_loss": 3.5687413215637207,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 10.913942981511354,
+      "peak_memory_bytes": 3062182912,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T1-residual_rich-seed29.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 3.6850857734680176,
+          "train_batch_loss": 3.728663206100464
+        },
+        {
+          "step": 100,
+          "validation_loss": 3.5348029136657715,
+          "train_batch_loss": 3.3302793502807617
+        },
+        {
+          "step": 200,
+          "validation_loss": 3.564715623855591,
+          "train_batch_loss": 3.3164639472961426
+        },
+        {
+          "step": 300,
+          "validation_loss": 3.5989456176757812,
+          "train_batch_loss": 2.9176533222198486
+        },
+        {
+          "step": 400,
+          "validation_loss": 3.623751401901245,
+          "train_batch_loss": 3.135850667953491
+        },
+        {
+          "step": 500,
+          "validation_loss": 3.6469268798828125,
+          "train_batch_loss": 2.876819133758545
+        },
+        {
+          "step": 600,
+          "validation_loss": 3.681018829345703,
+          "train_batch_loss": 2.787099838256836
+        },
+        {
+          "step": 700,
+          "validation_loss": 3.7072086334228516,
+          "train_batch_loss": 2.8975648880004883
+        },
+        {
+          "step": 800,
+          "validation_loss": 3.729252338409424,
+          "train_batch_loss": 2.8600540161132812
+        },
+        {
+          "step": 900,
+          "validation_loss": 3.7563061714172363,
+          "train_batch_loss": 2.425905227661133
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 1,
+      "seed": 47,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 900,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 3.60382080078125,
+      "selected_checkpoint_step": 100,
+      "test_loss": 3.6503968238830566,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 8.312147252261639,
+      "peak_memory_bytes": 2433025024,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T1-linear_refit-seed47.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 3.6847891807556152,
+          "train_batch_loss": 3.681666374206543
+        },
+        {
+          "step": 100,
+          "validation_loss": 3.60382080078125,
+          "train_batch_loss": 3.4854559898376465
+        },
+        {
+          "step": 200,
+          "validation_loss": 3.6409530639648438,
+          "train_batch_loss": 3.409364700317383
+        },
+        {
+          "step": 300,
+          "validation_loss": 3.684227705001831,
+          "train_batch_loss": 3.2941031455993652
+        },
+        {
+          "step": 400,
+          "validation_loss": 3.7189438343048096,
+          "train_batch_loss": 3.1977121829986572
+        },
+        {
+          "step": 500,
+          "validation_loss": 3.7464027404785156,
+          "train_batch_loss": 3.152815103530884
+        },
+        {
+          "step": 600,
+          "validation_loss": 3.774379014968872,
+          "train_batch_loss": 3.142308235168457
+        },
+        {
+          "step": 700,
+          "validation_loss": 3.7992043495178223,
+          "train_batch_loss": 3.044340133666992
+        },
+        {
+          "step": 800,
+          "validation_loss": 3.8194923400878906,
+          "train_batch_loss": 2.7181339263916016
+        },
+        {
+          "step": 900,
+          "validation_loss": 3.8414053916931152,
+          "train_batch_loss": 2.7372593879699707
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 1,
+      "seed": 47,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 900,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 3.5222859382629395,
+      "selected_checkpoint_step": 100,
+      "test_loss": 3.5642457008361816,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 10.899888169020414,
+      "peak_memory_bytes": 3062182912,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T1-residual_rich-seed47.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 3.6844654083251953,
+          "train_batch_loss": 3.681666374206543
+        },
+        {
+          "step": 100,
+          "validation_loss": 3.5222859382629395,
+          "train_batch_loss": 3.3796541690826416
+        },
+        {
+          "step": 200,
+          "validation_loss": 3.565669298171997,
+          "train_batch_loss": 3.292666435241699
+        },
+        {
+          "step": 300,
+          "validation_loss": 3.6122565269470215,
+          "train_batch_loss": 3.200019598007202
+        },
+        {
+          "step": 400,
+          "validation_loss": 3.634296417236328,
+          "train_batch_loss": 3.0919017791748047
+        },
+        {
+          "step": 500,
+          "validation_loss": 3.6536388397216797,
+          "train_batch_loss": 3.0471744537353516
+        },
+        {
+          "step": 600,
+          "validation_loss": 3.673372745513916,
+          "train_batch_loss": 3.0050015449523926
+        },
+        {
+          "step": 700,
+          "validation_loss": 3.7013027667999268,
+          "train_batch_loss": 2.9510409832000732
+        },
+        {
+          "step": 800,
+          "validation_loss": 3.724447727203369,
+          "train_batch_loss": 2.6016223430633545
+        },
+        {
+          "step": 900,
+          "validation_loss": 3.7472198009490967,
+          "train_batch_loss": 2.621035099029541
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 2,
+      "seed": 11,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.4400739669799805,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.5047898292541504,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 7.524198293685913,
+      "peak_memory_bytes": 2433024512,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T2-linear_refit-seed11.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.4400739669799805,
+          "train_batch_loss": 2.606267213821411
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.5426862239837646,
+          "train_batch_loss": 2.6284289360046387
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.6109142303466797,
+          "train_batch_loss": 2.6173644065856934
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.6536622047424316,
+          "train_batch_loss": 2.4414799213409424
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.692876100540161,
+          "train_batch_loss": 2.351919651031494
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.720059871673584,
+          "train_batch_loss": 1.7564436197280884
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.7486071586608887,
+          "train_batch_loss": 1.7950886487960815
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.7725701332092285,
+          "train_batch_loss": 1.7209746837615967
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.797852039337158,
+          "train_batch_loss": 1.7195335626602173
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 2,
+      "seed": 11,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.4400906562805176,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.504852294921875,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 9.938156001269817,
+      "peak_memory_bytes": 3062182400,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T2-residual_rich-seed11.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.4400906562805176,
+          "train_batch_loss": 2.606267213821411
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.547592878341675,
+          "train_batch_loss": 2.628938913345337
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.6147758960723877,
+          "train_batch_loss": 2.6038718223571777
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.668403387069702,
+          "train_batch_loss": 2.4427409172058105
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.709561824798584,
+          "train_batch_loss": 2.316659450531006
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.735758066177368,
+          "train_batch_loss": 1.705932378768921
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.7663559913635254,
+          "train_batch_loss": 1.7309573888778687
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.799377202987671,
+          "train_batch_loss": 1.661953091621399
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.8437321186065674,
+          "train_batch_loss": 1.6452131271362305
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 2,
+      "seed": 29,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.4408388137817383,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.5040993690490723,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 7.5967808067798615,
+      "peak_memory_bytes": 2433024512,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T2-linear_refit-seed29.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.4408388137817383,
+          "train_batch_loss": 2.7098324298858643
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.5487520694732666,
+          "train_batch_loss": 2.4376416206359863
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.6132853031158447,
+          "train_batch_loss": 2.385122537612915
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.6592819690704346,
+          "train_batch_loss": 1.9385008811950684
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.694342851638794,
+          "train_batch_loss": 2.0585837364196777
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.7282793521881104,
+          "train_batch_loss": 1.937748908996582
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.7563767433166504,
+          "train_batch_loss": 1.8485087156295776
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.780646800994873,
+          "train_batch_loss": 1.8247207403182983
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.8047068119049072,
+          "train_batch_loss": 1.7827708721160889
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 2,
+      "seed": 29,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.44093656539917,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.5041072368621826,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 9.833769962191582,
+      "peak_memory_bytes": 3062182400,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T2-residual_rich-seed29.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.44093656539917,
+          "train_batch_loss": 2.7098324298858643
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.5558934211730957,
+          "train_batch_loss": 2.4336276054382324
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.6159732341766357,
+          "train_batch_loss": 2.3734002113342285
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.6636154651641846,
+          "train_batch_loss": 1.9102163314819336
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.701601028442383,
+          "train_batch_loss": 2.0244946479797363
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.736844301223755,
+          "train_batch_loss": 1.885736107826233
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.7690889835357666,
+          "train_batch_loss": 1.7910618782043457
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.8049540519714355,
+          "train_batch_loss": 1.7591357231140137
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.8267533779144287,
+          "train_batch_loss": 1.693284034729004
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 2,
+      "seed": 47,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.4402830600738525,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.5050268173217773,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 7.621892411261797,
+      "peak_memory_bytes": 2433024512,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T2-linear_refit-seed47.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.4402830600738525,
+          "train_batch_loss": 2.416419744491577
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.540203809738159,
+          "train_batch_loss": 2.5551540851593018
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.6069371700286865,
+          "train_batch_loss": 2.388106346130371
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.654057502746582,
+          "train_batch_loss": 2.1670851707458496
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.6913955211639404,
+          "train_batch_loss": 1.9533363580703735
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.7201621532440186,
+          "train_batch_loss": 2.1020007133483887
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.7529172897338867,
+          "train_batch_loss": 2.0276482105255127
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.7815423011779785,
+          "train_batch_loss": 1.8814102411270142
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.805530309677124,
+          "train_batch_loss": 1.6393214464187622
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 2,
+      "seed": 47,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.440324306488037,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.5051393508911133,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 10.06451952829957,
+      "peak_memory_bytes": 3062182400,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T2-residual_rich-seed47.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.440324306488037,
+          "train_batch_loss": 2.416419744491577
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.5479178428649902,
+          "train_batch_loss": 2.5599546432495117
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.6109042167663574,
+          "train_batch_loss": 2.3632891178131104
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.6690783500671387,
+          "train_batch_loss": 2.142345428466797
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.707152843475342,
+          "train_batch_loss": 1.9212666749954224
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.73608136177063,
+          "train_batch_loss": 2.0469119548797607
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.77293062210083,
+          "train_batch_loss": 1.9601225852966309
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.8020968437194824,
+          "train_batch_loss": 1.8200689554214478
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.848083972930908,
+          "train_batch_loss": 1.5630505084991455
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 3,
+      "seed": 11,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.2069594860076904,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.287525177001953,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 7.517710369080305,
+      "peak_memory_bytes": 2433024512,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T3-linear_refit-seed11.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.2069594860076904,
+          "train_batch_loss": 2.355722427368164
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.295379161834717,
+          "train_batch_loss": 2.4737131595611572
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.3474059104919434,
+          "train_batch_loss": 2.3663949966430664
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.3777103424072266,
+          "train_batch_loss": 2.1449105739593506
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.4081597328186035,
+          "train_batch_loss": 2.09909987449646
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.4281628131866455,
+          "train_batch_loss": 1.5344905853271484
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.4497902393341064,
+          "train_batch_loss": 1.5822157859802246
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.4703617095947266,
+          "train_batch_loss": 1.4883257150650024
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.4912805557250977,
+          "train_batch_loss": 1.4523053169250488
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 3,
+      "seed": 11,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.2069973945617676,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.28761625289917,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 9.846350237727165,
+      "peak_memory_bytes": 3062182400,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T3-residual_rich-seed11.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.2069973945617676,
+          "train_batch_loss": 2.355722427368164
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.301809310913086,
+          "train_batch_loss": 2.470684289932251
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.355482816696167,
+          "train_batch_loss": 2.348663330078125
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.3987796306610107,
+          "train_batch_loss": 2.143728256225586
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.4430925846099854,
+          "train_batch_loss": 2.075592041015625
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.474029541015625,
+          "train_batch_loss": 1.475874662399292
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.5107169151306152,
+          "train_batch_loss": 1.5363966226577759
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.5523369312286377,
+          "train_batch_loss": 1.4202296733856201
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.5877902507781982,
+          "train_batch_loss": 1.3994789123535156
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 3,
+      "seed": 29,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.207618474960327,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.2869811058044434,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 7.599526822566986,
+      "peak_memory_bytes": 2433024512,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T3-linear_refit-seed29.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.207618474960327,
+          "train_batch_loss": 2.485607624053955
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.297109603881836,
+          "train_batch_loss": 2.2353668212890625
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.347736358642578,
+          "train_batch_loss": 2.1187713146209717
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.3821921348571777,
+          "train_batch_loss": 1.6958675384521484
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.408022165298462,
+          "train_batch_loss": 1.8354904651641846
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.43355655670166,
+          "train_batch_loss": 1.655677080154419
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.4555344581604004,
+          "train_batch_loss": 1.6285643577575684
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.4736361503601074,
+          "train_batch_loss": 1.5522456169128418
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.492711305618286,
+          "train_batch_loss": 1.4747626781463623
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 3,
+      "seed": 29,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.207728385925293,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.2870140075683594,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 9.771657034754753,
+      "peak_memory_bytes": 3062182400,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T3-residual_rich-seed29.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.207728385925293,
+          "train_batch_loss": 2.485607624053955
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.3030948638916016,
+          "train_batch_loss": 2.2319107055664062
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.354767322540283,
+          "train_batch_loss": 2.10787034034729
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.398484706878662,
+          "train_batch_loss": 1.6748919486999512
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.4394638538360596,
+          "train_batch_loss": 1.795763611793518
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.4799163341522217,
+          "train_batch_loss": 1.6172252893447876
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.5189173221588135,
+          "train_batch_loss": 1.5571238994598389
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.5568878650665283,
+          "train_batch_loss": 1.4690847396850586
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.5831241607666016,
+          "train_batch_loss": 1.384645700454712
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 3,
+      "seed": 47,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.207228422164917,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.28756046295166,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 7.512514278292656,
+      "peak_memory_bytes": 2433024512,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T3-linear_refit-seed47.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.207228422164917,
+          "train_batch_loss": 2.2313597202301025
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.292055130004883,
+          "train_batch_loss": 2.384751319885254
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.344449996948242,
+          "train_batch_loss": 2.153470993041992
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.380638837814331,
+          "train_batch_loss": 1.8973065614700317
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.4075429439544678,
+          "train_batch_loss": 1.6441715955734253
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.4292590618133545,
+          "train_batch_loss": 1.8278651237487793
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.455779790878296,
+          "train_batch_loss": 1.7533215284347534
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.4785373210906982,
+          "train_batch_loss": 1.518479824066162
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.4955615997314453,
+          "train_batch_loss": 1.4065918922424316
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 3,
+      "seed": 47,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.2072954177856445,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.2876944541931152,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 9.713189363479614,
+      "peak_memory_bytes": 3062182400,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T3-residual_rich-seed47.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.2072954177856445,
+          "train_batch_loss": 2.2313597202301025
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.2996649742126465,
+          "train_batch_loss": 2.387213706970215
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.351714611053467,
+          "train_batch_loss": 2.1359286308288574
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.3985531330108643,
+          "train_batch_loss": 1.8674172163009644
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.44510555267334,
+          "train_batch_loss": 1.6020138263702393
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.481581211090088,
+          "train_batch_loss": 1.7712854146957397
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.5257744789123535,
+          "train_batch_loss": 1.6719119548797607
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.5589492321014404,
+          "train_batch_loss": 1.431858777999878
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.602299213409424,
+          "train_batch_loss": 1.339855432510376
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 4,
+      "seed": 11,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.18782639503479,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.2644572257995605,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 7.6255637519061565,
+      "peak_memory_bytes": 2433024512,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T4-linear_refit-seed11.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.18782639503479,
+          "train_batch_loss": 2.284742832183838
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.271810531616211,
+          "train_batch_loss": 2.4560604095458984
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.3209500312805176,
+          "train_batch_loss": 2.3158304691314697
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.350726842880249,
+          "train_batch_loss": 2.1057288646698
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.380265712738037,
+          "train_batch_loss": 2.0626583099365234
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.399461269378662,
+          "train_batch_loss": 1.5242109298706055
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.419904947280884,
+          "train_batch_loss": 1.543015956878662
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.440704345703125,
+          "train_batch_loss": 1.455407738685608
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.460954189300537,
+          "train_batch_loss": 1.4188621044158936
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 4,
+      "seed": 11,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.1878585815429688,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.2645468711853027,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 9.732883863151073,
+      "peak_memory_bytes": 3062182400,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T4-residual_rich-seed11.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.1878585815429688,
+          "train_batch_loss": 2.284742832183838
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.2781333923339844,
+          "train_batch_loss": 2.453138589859009
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.3302061557769775,
+          "train_batch_loss": 2.2963881492614746
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.3730289936065674,
+          "train_batch_loss": 2.1034460067749023
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.415163040161133,
+          "train_batch_loss": 2.038595199584961
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.4462227821350098,
+          "train_batch_loss": 1.4633897542953491
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.481199026107788,
+          "train_batch_loss": 1.4923756122589111
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.5224661827087402,
+          "train_batch_loss": 1.3842912912368774
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.555881977081299,
+          "train_batch_loss": 1.3648433685302734
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 4,
+      "seed": 29,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.18843412399292,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.2639565467834473,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 7.490620620548725,
+      "peak_memory_bytes": 2433024512,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T4-linear_refit-seed29.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.18843412399292,
+          "train_batch_loss": 2.4443259239196777
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.2730460166931152,
+          "train_batch_loss": 2.199265480041504
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.3214657306671143,
+          "train_batch_loss": 2.0498926639556885
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.3555068969726562,
+          "train_batch_loss": 1.6674028635025024
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.379883289337158,
+          "train_batch_loss": 1.798520565032959
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.4050064086914062,
+          "train_batch_loss": 1.6246700286865234
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.4263625144958496,
+          "train_batch_loss": 1.5998070240020752
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.4439244270324707,
+          "train_batch_loss": 1.5381981134414673
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.462517261505127,
+          "train_batch_loss": 1.4400967359542847
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 4,
+      "seed": 29,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.188544750213623,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.263983964920044,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 9.744448442012072,
+      "peak_memory_bytes": 3062182400,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T4-residual_rich-seed29.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.188544750213623,
+          "train_batch_loss": 2.4443259239196777
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.278670310974121,
+          "train_batch_loss": 2.1949880123138428
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.329223394393921,
+          "train_batch_loss": 2.038513660430908
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.373206377029419,
+          "train_batch_loss": 1.6471693515777588
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.4110608100891113,
+          "train_batch_loss": 1.756162166595459
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.4514617919921875,
+          "train_batch_loss": 1.586867332458496
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.4894347190856934,
+          "train_batch_loss": 1.5250036716461182
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.525139808654785,
+          "train_batch_loss": 1.4520139694213867
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.55195951461792,
+          "train_batch_loss": 1.3398716449737549
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 4,
+      "seed": 47,
+      "head_family": "linear_refit",
+      "head_parameter_count": 100663296,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.1880276203155518,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.264538526535034,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 7.540332432836294,
+      "peak_memory_bytes": 2433024512,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T4-linear_refit-seed47.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.1880276203155518,
+          "train_batch_loss": 2.200207233428955
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.267679214477539,
+          "train_batch_loss": 2.3614628314971924
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.3187365531921387,
+          "train_batch_loss": 2.1420795917510986
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.3534932136535645,
+          "train_batch_loss": 1.8878649473190308
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.379830837249756,
+          "train_batch_loss": 1.6234267950057983
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.4011566638946533,
+          "train_batch_loss": 1.8038625717163086
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.4268383979797363,
+          "train_batch_loss": 1.7177519798278809
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.448725700378418,
+          "train_batch_loss": 1.497646689414978
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.4655849933624268,
+          "train_batch_loss": 1.3782856464385986
+        }
+      ]
+    },
+    {
+      "experiment_id": "EXP-001",
+      "stage": "pilot",
+      "confirmatory": false,
+      "git_commit": "6b7eeb3069b9c1300d24c8d91fda90b61dbb3113",
+      "source_sha256": "297b1426fe10bbcf2ae5a090e1c5d193148252b8f19f17220a44b35e1c738a3c",
+      "model": "ByteDance/Ouro-1.4B",
+      "model_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "tokenizer_revision": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+      "dataset": "HuggingFaceFW/fineweb-edu",
+      "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "dataset_config": "sample-10BT",
+      "loop_depth": 4,
+      "seed": 47,
+      "head_family": "residual_rich",
+      "head_parameter_count": 126878208,
+      "initialization": "native W; rich U=0",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "steps": 800,
+      "max_steps": 5000,
+      "lr_schedule": "constant",
+      "weight_decay": 0.0,
+      "batch_size": 256,
+      "early_stopping": {
+        "eval_every": 100,
+        "patience_evals": 8
+      },
+      "dtype": "float32",
+      "device": "NVIDIA GeForce RTX 5090",
+      "best_validation_loss": 2.188086986541748,
+      "selected_checkpoint_step": 1,
+      "test_loss": 2.2646727561950684,
+      "sample_count": {
+        "train": 81920,
+        "validation": 10240,
+        "test": 10240
+      },
+      "split": "document train/validation/test",
+      "hidden_sha256": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+      "runtime_seconds": 9.835928052663803,
+      "peak_memory_bytes": 3062182400,
+      "validity_status": "pilot_probe_passed",
+      "checkpoints_retained": true,
+      "checkpoint_path": "T4-residual_rich-seed47.pt",
+      "history": [
+        {
+          "step": 1,
+          "validation_loss": 2.188086986541748,
+          "train_batch_loss": 2.200207233428955
+        },
+        {
+          "step": 100,
+          "validation_loss": 2.274287700653076,
+          "train_batch_loss": 2.362740993499756
+        },
+        {
+          "step": 200,
+          "validation_loss": 2.3271408081054688,
+          "train_batch_loss": 2.1257591247558594
+        },
+        {
+          "step": 300,
+          "validation_loss": 2.372030019760132,
+          "train_batch_loss": 1.8563274145126343
+        },
+        {
+          "step": 400,
+          "validation_loss": 2.416788339614868,
+          "train_batch_loss": 1.5792502164840698
+        },
+        {
+          "step": 500,
+          "validation_loss": 2.4520950317382812,
+          "train_batch_loss": 1.7467930316925049
+        },
+        {
+          "step": 600,
+          "validation_loss": 2.493556499481201,
+          "train_batch_loss": 1.629615306854248
+        },
+        {
+          "step": 700,
+          "validation_loss": 2.527484893798828,
+          "train_batch_loss": 1.4102253913879395
+        },
+        {
+          "step": 800,
+          "validation_loss": 2.5678811073303223,
+          "train_batch_loss": 1.3082642555236816
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "metrics_recomputed": true,
+    "document_bootstrap_reproduced": true,
+    "documents_unique": 3200,
+    "content_hashes_unique": 3200,
+    "sample_targets_verified": 102400,
+    "shared_hidden_hash": "fd82582794fb1d8263d07aa89f42e0c50ad6634855328e09db07038b72f3b6a1",
+    "smoke_overlap_documents": 320,
+    "smoke_overlap_targets": 10240,
+    "overlap_records_identical": true,
+    "budget_exhausted_runs": 0,
+    "step_1_selected_runs": 18,
+    "step_100_selected_runs": 6
+  },
+  "interpretation": "Pilot trend favors H2 rather than H1, driven by T1-to-T2 decrease; deeper probe optima unestablished, not confirmatory."
+}

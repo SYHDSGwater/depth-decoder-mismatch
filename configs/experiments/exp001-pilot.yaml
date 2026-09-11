@@ -1,0 +1,39 @@
+experiment: EXP-001
+stage: pilot
+model:
+  name: ByteDance/Ouro-1.4B
+  revision: 574fa66cb8bf5abdc979642d01cf2b79b16bfab1
+  weight_sha256: 58872a72616c736595b8b7662079c5b12c5a162ec16eae94f21c348dfa9885af
+  dtype: bfloat16
+  attention: sdpa
+  native_depths: [1, 2, 3, 4]
+data:
+  dataset: HuggingFaceFW/fineweb-edu
+  dataset_config: sample-10BT
+  revision: 87f09149ef4734204d70ed1d046ddc9ca3f2b8f9
+  source_file: sample/10BT/000_00000.parquet
+  seq_len: 1024
+  min_position: 128
+  positions_per_window: 32
+  target_count: 102400
+  seed: 20260911
+  window_policy: first-full-window-per-document
+  split_policy: document-sha256-80-10-10
+  deduplicate_text: true
+training:
+  optimizer: AdamW
+  lr: 1.0e-4
+  weight_decay: 0.0
+  batch_size: 256
+  max_steps: 5000
+  eval_every: 100
+  patience_evals: 8
+  seeds: [11, 29, 47]
+  residual_width: 512
+  dtype: float32
+  schedule: constant
+  save_head_checkpoints: true
+analysis:
+  bootstrap_replicates: 2000
+  bootstrap_seed: 20260911
+  confirmatory: false

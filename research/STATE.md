@@ -70,4 +70,14 @@ Phase B pure-vocab causal test:
 - raw CE alone is not sufficient for the strong bottleneck claim; `CE_active` interaction is primary.
 
 ## Next action
-Complete EXP-001 smoke/pilot first. In parallel, implement an EXP-003 decoder-only bridge on frozen Ouro hidden states to validate the output-inflation decomposition and estimate useful V_out levels before committing to from-scratch training.
+EXP-001 smoke, pilot and 1M have completed; retain their optimization and non-independent-sampling limitations. In parallel, implement an EXP-003 decoder-only bridge on frozen Ouro hidden states to validate the output-inflation decomposition and estimate useful V_out levels before committing to from-scratch training.
+
+## EXP-001 completed runs (2026-09-11)
+- Smoke: 10240 targets, 24 fits, 50-step budget; slope +0.00009894, document interval [-0.00344752,+0.00366996]; plumbing passed, no hypothesis conclusion.
+- Pilot: 102400 targets, 24 fits; slope -0.02479354, interval [-0.02685600,-0.02270657]; observed direction favors H2 under the fixed recipe.
+- 1M: 800000/100000/100000 targets, 31250 documents, 24 fits; slope -0.02339529, interval [-0.02406723,-0.02274578]; observed direction favors H2.
+- Pilot and 1M: T1 selected step 100, T2..4 step 1; optimized family optima are not established. Rich held-out CE improves with depth.
+- 1M includes all pilot/smoke records unchanged; all stages are non-confirmatory and independent confirmation remains pending.
+- Exact-text deduplication preceded pilot and 1M extraction. Paired data, disjoint splits, native depths and nested extra capacity checked.
+- Versioned configurations: configs/experiments/exp001-{smoke,pilot,1m}.yaml; full results and audit: research/RESULTS.md and research/runs/.
+- 1M remote output: /root/autodl-fs/depth-decoder-mismatch/outputs/EXP-001-1M-20260911/ on pro-78730289ac36; weights remain outside Git.
