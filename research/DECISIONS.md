@@ -43,3 +43,19 @@ For V_out=98,304, initialize each dummy output row as a one-to-one clone of one 
 
 ## 2026-09-11 — Match supervision count across recurrent depths in EXP-003A
 Force fixed recurrent depth and use only the final-step LM loss in both T=1 and T=4 primary arms. Do not apply intermediate-loop LM losses in T=4. Otherwise deeper arms would receive more output-head supervision and the depth intervention would be entangled with objective multiplicity.
+
+## 2026-09-11 — Treat failure of linear refit at deep T as evidence about native-head alignment, not only rich-head capacity
+Across both EXP-001 pilot and 1M, the unrestricted linear refit itself ceases to improve held-out CE from T=2 onward. T2/T3/T4 all select the earliest evaluated checkpoint (step 1), and the trained linear head is slightly worse than the untouched native LM head.
+
+For fixed hidden states, multiclass softmax cross-entropy is convex in the linear weight matrix W. Therefore this pattern is not naturally explained by a non-convex local-minimum trap in the head. The more plausible interpretation is that the pretrained native LM head and deeper recurrent hidden states are already strongly co-adapted, while full ~100M-parameter refitting on finite FineWeb-Edu samples introduces estimation noise / overfitting.
+
+EXP-001b supports this interpretation using a constrained residual parameterization: with W_native frozen, the low-rank linear residual gains ~0.304 nat at T1, ~0.011 at T2, and ~0 at T3/T4; the incremental nonlinear gain collapses similarly. Hence the emerging mechanism is stronger than 'rich decoder unnecessary': deeper recurrent computation appears progressively aligned to the native output interface.
+
+## 2026-09-11 — Replace expensive EXP-003A as the immediate next step with a tiny recurrent causal control
+The Ouro EXP-003A screen costs tens of H100-hours and no longer has sufficient expected information gain for the current project. Before any large-scale training, perform one final Murugan-scale causal test: `EXP-003C`.
+
+EXP-003C uses a byte-level compact Transformer (`V_active=256`, D=32, four-layer shared body), compares T=1 vs T=4 recurrence and V_out=256 vs 4096 never-target output inflation, trains for 600 steps over five paired seeds, and uses `I_active` as the primary interaction. It adds exactly the missing factor—weight-shared recurrence—to Murugan's existing output-vocabulary causal null.
+
+Stop rule:
+- null / raw-only / negative `I_active`: stop this research branch; EXP-003A/B/004 become future work only;
+- robust positive `I_active`: recurrence changes the causal effect of output-space inflation and may justify an expensive Ouro-scale validation later.
